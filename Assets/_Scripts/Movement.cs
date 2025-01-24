@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,10 @@ public class BubbleMovement : MonoBehaviour
     [SerializeField] private float maxProjectileForce = 15f;
     [SerializeField] private float minProjectileScale = 0.5f;
     [SerializeField] private float maxProjectileScale = 2f;
+    
+    [Header("Pointer Settings")]
+    [SerializeField] private Transform aimPointer;
+    [SerializeField] private float pointerDistance = 0.5f;
     
     private Rigidbody2D rb;
     private float currentScale = 1f;
@@ -87,6 +92,8 @@ public class BubbleMovement : MonoBehaviour
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
 
+        HandleAimPointer(direction);
+
         if (Input.GetMouseButtonDown(0))
         {
             chargeStartTime = Time.time;
@@ -122,5 +129,13 @@ public class BubbleMovement : MonoBehaviour
 
             isCharging = false;
         }
+    }
+
+    private void HandleAimPointer(Vector2 direction)
+    {
+        aimPointer.position = (Vector2)transform.position + direction * pointerDistance * currentScale;
+        
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        aimPointer.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
