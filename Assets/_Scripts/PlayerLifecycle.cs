@@ -22,11 +22,12 @@ public class PlayerLifecycle : MonoBehaviour
     private void PlayDeathSequence()
     {
         MovementScript.enabled = false;
-        DeathScript.enabled = true;
+        DeathScript.PlayDeathSequence();
     }
     
     private void OnGameReset(ResetEvent evt)
     {
+        MovementScript.enabled = true;
         MovementScript.ResetMovement();    
     }
 

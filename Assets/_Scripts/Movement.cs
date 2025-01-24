@@ -80,6 +80,11 @@ public class BubbleMovement : MonoBehaviour
         {
             ResetMovement();
         }
+
+        if (Game.SessionData.BubbleHealth.value <= 0)
+        {
+            return;
+        }
         HandleBubbleSize();
         HandleProjectiles();
     }
