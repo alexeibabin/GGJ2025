@@ -13,6 +13,7 @@ namespace _Scripts.Spawner
         public class SpawnData
         {
             [Required] public SpawnableWrapper spawnable;
+            [Required] public Vector2 spawnPosition;
             [MinValue(0)] public int spawnTime;
             [MinValue(-1)] public int despawnTime; 
         }
@@ -40,6 +41,7 @@ namespace _Scripts.Spawner
                     spawnable = lastSpawn.spawnable,
                     spawnTime = lastSpawn.spawnTime,
                     despawnTime = lastSpawn.despawnTime,
+                    spawnPosition = lastSpawn.spawnPosition
                 };
 
                 spawns.Add(duplicate);

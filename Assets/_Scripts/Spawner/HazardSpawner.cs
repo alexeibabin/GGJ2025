@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ namespace _Scripts.Spawner
         [UsedImplicitly] // invoked via animation event
         private void SpawnPrefab()
         {
-            Instantiate(_prefabToSpawn, transform.position, transform.rotation, transform);
+            Instantiate(_prefabToSpawn, transform);
         }
     }
 }

@@ -14,14 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawns:
   - spawnable:
-      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+      spawnablePrefab: {fileID: 3671653508034221530, guid: 52b59793709564fea8464b92e0ad8a84, type: 3}
+    spawnPosition: {x: -1, y: 1.4}
     spawnTime: 3
-    despawnTime: 6
+    despawnTime: -1
   - spawnable:
       spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnPosition: {x: 0, y: 0}
     spawnTime: 10
     despawnTime: 15
   - spawnable:
       spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnPosition: {x: 0, y: 0}
+    spawnTime: 22
+    despawnTime: 26
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnPosition: {x: 0, y: 0}
+    spawnTime: 22
+    despawnTime: 26
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnPosition: {x: 0, y: 0}
+    spawnTime: 22
+    despawnTime: 26
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnPosition: {x: 0, y: 0}
+    spawnTime: 22
+    despawnTime: 26
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnPosition: {x: 0, y: 0}
     spawnTime: 22
     despawnTime: 26
