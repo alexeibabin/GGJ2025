@@ -20,7 +20,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxYDirection = 1;
 
     [SerializeField] private GameObject Art;
-    
+    public float damage = 1; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

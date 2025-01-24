@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6912480117762534093}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   minYDirection: -1
   maxYDirection: 1
   Art: {fileID: 9012775548862986816}
+  damage: 1
 --- !u!1 &9012775548862986816
 GameObject:
   m_ObjectHideFlags: 0

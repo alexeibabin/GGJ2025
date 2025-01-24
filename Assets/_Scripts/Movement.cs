@@ -84,7 +84,7 @@ public class BubbleMovement : MonoBehaviour
         HandleProjectiles();
     }
 
-    private void ResetMovement()
+    public void ResetMovement()
     {
         transform.position = Vector3.zero;
         rb.totalForce = Vector2.zero;
