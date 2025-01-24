@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Scripts.Collectables;
 using UniRx;
+using UnityEngine;
 
 public class SessionData
 {
@@ -9,8 +10,10 @@ public class SessionData
     public float TimeSinceLastTransition;
     public int TransitionsCompleted;
     public bool IsPaused;
+    public int CurrentLevel;
 
     public ReactiveDictionary<ECollectableType, int> CollectedItems { get; set; } = new();
+    public ReactiveDictionary<int, List<GameObject>> Spawned { get; set; } = new();
 
     public SessionData()
     {
@@ -24,6 +27,7 @@ public class SessionData
         TimeSinceLastTransition = 0;
         ClearCollectables();
         TransitionsCompleted = 0;
+        CurrentLevel = 0;
     }
     
     public void AddCollectable(ECollectableType collectableType)
@@ -49,5 +53,36 @@ public class SessionData
     public void ClearCollectables()
     {
         CollectedItems.Clear();
+    }
+
+    public void AddSpawnable(GameObject evtGameObject)
+    {
+        if (!Spawned.ContainsKey(CurrentLevel))
+        {
+            Spawned.Add(CurrentLevel, new List<GameObject>());
+        }
+        
+        Spawned[CurrentLevel].Add(evtGameObject);
+    }
+
+    public void RemoveSpawnable(GameObject evtGameObject)
+    {
+        if (Spawned.ContainsKey(CurrentLevel))
+        {
+            Spawned[CurrentLevel].Remove(evtGameObject);
+        }
+    }
+    
+    public void ClearSpawnables()
+    {
+        if (Spawned.ContainsKey(CurrentLevel))
+        {
+            foreach (var spawnable in Spawned[CurrentLevel])
+            {
+                Object.Destroy(spawnable);
+            }
+            
+            Spawned[CurrentLevel].Clear();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using _Scripts.Utils;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace _Scripts.Spawner
 {
     public class SpawnConductor : MonoBehaviour
     {
-        [SerializeField] private LevelSpawnInventory levelSpawnInventory;
+        [SerializeField] private List<LevelSpawnInventory> levelSpawnInventory;
 
         private void Start()
         {
@@ -17,7 +18,7 @@ namespace _Scripts.Spawner
         {
             var progressTimeAsInt = Mathf.FloorToInt(evt.progressTimer);
 
-            foreach (var spawnData in levelSpawnInventory.Spawns)
+            foreach (var spawnData in levelSpawnInventory[Game.SessionData.CurrentLevel].Spawns)
             {
                 if (spawnData.spawnTime == progressTimeAsInt)
                 {

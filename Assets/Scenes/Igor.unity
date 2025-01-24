@@ -379,7 +379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31286d132f546a983678efe10290eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSpawnInventory: {fileID: 11400000, guid: c2a53ba8b65d34c70bc809b7a60d50e5, type: 2}
+  levelSpawnInventory:
+  - {fileID: 11400000, guid: c2a53ba8b65d34c70bc809b7a60d50e5, type: 2}
 --- !u!4 &1622862159
 Transform:
   m_ObjectHideFlags: 0

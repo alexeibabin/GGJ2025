@@ -16,3 +16,15 @@ MonoBehaviour:
   - spawnable:
       spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
     spawnTime: 2
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnTime: 3
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnTime: 4
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnTime: 5
+  - spawnable:
+      spawnablePrefab: {fileID: 3598517261393981475, guid: 32366495a2ad14aa58b69abe0c24c98d, type: 3}
+    spawnTime: 6
