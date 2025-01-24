@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BubbleMovement : MonoBehaviour
@@ -21,6 +23,11 @@ public class BubbleMovement : MonoBehaviour
     [SerializeField] private float minProjectileScale = 0.5f;
     [SerializeField] private float maxProjectileScale = 2f;
     
+    [FormerlySerializedAs("massMultiplier")]
+    [Header("Bounciness Control")]
+    [SerializeField] private float minBounciness = 1f;
+    [SerializeField] private float maxBounciness = 1f;
+    
     private Rigidbody2D rb;
     private float currentScale = 1f;
     private float chargeStartTime;
@@ -39,6 +46,9 @@ public class BubbleMovement : MonoBehaviour
         
         // Set initial gravity
         rb.gravityScale = baseGravityScale;
+        
+        totalScaleRange = maxBubbleScale - minBubbleScale;
+        sizeChangePerTap = totalScaleRange / tapsToMax;
         
         // Set initial scale based on base gravity
         currentScale = Mathf.Lerp(maxBubbleScale, minBubbleScale, 
@@ -61,6 +71,13 @@ public class BubbleMovement : MonoBehaviour
         HandleProjectiles();
     }
 
+    private void AdjustBounciness()
+    {
+        float scalePercent = Mathf.InverseLerp(minGravityScale, maxGravityScale, rb.gravityScale);   
+        float bounciness = Mathf.Lerp(minBounciness, maxBounciness, scalePercent);
+        rb.sharedMaterial.bounciness = bounciness;
+    }
+
     private void HandleBubbleSize()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -68,6 +85,7 @@ public class BubbleMovement : MonoBehaviour
             totalScaleRange = maxBubbleScale - minBubbleScale;
             sizeChangePerTap = totalScaleRange / tapsToMax;
             currentScale = Mathf.Min(currentScale + sizeChangePerTap, maxBubbleScale);
+            AdjustBounciness();
         }
 
         // Apply scale directly
@@ -119,7 +137,7 @@ public class BubbleMovement : MonoBehaviour
             
             // Decrease size by one tap's worth
             currentScale = Mathf.Max(currentScale - sizeChangePerTap, minBubbleScale);
-
+            AdjustBounciness();
             isCharging = false;
         }
     }
