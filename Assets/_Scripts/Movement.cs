@@ -93,7 +93,7 @@ public class BubbleMovement : MonoBehaviour
             isCharging = true;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && currentScale > minBubbleScale)
         {
             float chargeTime = Time.time - chargeStartTime;
             float chargeFactor = Mathf.Clamp01(chargeTime);
