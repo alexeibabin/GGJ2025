@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class PlayerLifecycle : MonoBehaviour
 {
+    public BubbleMovement MovementScript;
+    public PlayerDeath DeathScript;
     private void Awake()
     {
-        //Game.EventHub.Subscribe<ResetEvent>(Reset);
+        Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
         Game.SessionData.BubbleHealth.onValueChanged += CheckDeathScenario;
     }
 
@@ -19,6 +21,21 @@ public class PlayerLifecycle : MonoBehaviour
 
     private void PlayDeathSequence()
     {
-        throw new NotImplementedException();
+        MovementScript.enabled = false;
+        DeathScript.enabled = true;
+    }
+    
+    private void OnGameReset(ResetEvent evt)
+    {
+        MovementScript.ResetMovement();    
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            var enemyScript = other.gameObject.GetComponent<Enemy>();
+            Game.SessionData.BubbleHealth.value -= enemyScript.damage;
+        }
     }
 }
