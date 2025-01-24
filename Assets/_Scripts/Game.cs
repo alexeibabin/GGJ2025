@@ -1,18 +1,19 @@
+using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
    public static IEventHub EventHub { get; private set; }
    
-   // Start is called before the first frame update
-   void Start()
+   public static SessionData SessionData { get; private set; }
+
+   private void Awake()
    {
-       
+      DontDestroyOnLoad(gameObject);
    }
 
-   // Update is called once per frame
-   void Update()
+   public static void Clear()
    {
-       
+      SessionData = new SessionData();
    }
 }

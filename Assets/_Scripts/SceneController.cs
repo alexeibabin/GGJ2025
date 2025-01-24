@@ -1,17 +1,44 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class SceneController : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
-    // Loads the specified scene
-    public void LoadScene(string sceneName)
+
+    [SerializeField] private Button startGame;
+    [SerializeField] private Button quitGame;
+    [SerializeField] private Button about;
+
+    private void Awake()
     {
-        SceneManager.LoadScene(sceneName);
+        startGame.onClick.AddListener(LoadMainGame);
+        quitGame.onClick.AddListener(QuitGame);
+        about.onClick.AddListener(LoadAbout);
     }
 
-    // Quits the game and returns to the main menu
-    public void QuitToMainMenu(string mainMenuSceneName)
+    private void LoadAbout()
     {
-        SceneManager.LoadScene(mainMenuSceneName);
+        throw new NotImplementedException();
+    }
+
+    // Load the Main Menu Scene
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    // Load the Main Game Scene
+    public void LoadMainGame()
+    {
+        SceneManager.LoadScene("MainGameScene");
+        Debug.Log("Loading Main Game right now?");
+    }
+
+    // Load the Main Menu instead of quitting the application
+    public void QuitGame()
+    {
+        Debug.Log("Returning to Main Menu...");
+        LoadMainMenu(); // Calls the LoadMainMenu method
     }
 }
