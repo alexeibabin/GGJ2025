@@ -18,11 +18,18 @@ public class SceneLoader : MonoBehaviour
         quitGame.onClick.AddListener(QuitGame);
         about.onClick.AddListener(LoadAbout);
 
+        Game.EventHub.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
+
         // Ensure the pause menu is initially inactive
         if (pauseMenuPrefab != null)
         {
             pauseMenuPrefab.SetActive(false);
         }
+    }
+
+    private void OnPauseMenuClosed(PauseMenuClosedEvent evt)
+    {
+        ResumeGame();
     }
 
     private void Update()

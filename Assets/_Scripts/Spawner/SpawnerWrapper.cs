@@ -33,11 +33,11 @@ namespace _Scripts.Spawner
         {
             if (_instance != null)
             {
-                Destroy(_instance);
+                AnimateAndDestroy(_instance);
             }
         }
 
-        public void Destroy(GameObject spawnable)
+        public void AnimateAndDestroy(GameObject spawnable)
         {
             if (spawnable != null)
             {
