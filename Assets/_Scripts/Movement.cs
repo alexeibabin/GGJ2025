@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BubbleMovement : MonoBehaviour
@@ -23,6 +24,12 @@ public class BubbleMovement : MonoBehaviour
     [SerializeField] private float maxProjectileForce = 15f;
     [SerializeField] private float minProjectileScale = 0.5f;
     [SerializeField] private float maxProjectileScale = 2f;
+    [SerializeField] private float minPlayerRecoilForce = 5f;
+    [SerializeField] private float maxPlayerRecoilForce = 15f;
+    
+    [Header("Bounciness Control")]
+    [SerializeField] private float minBounciness = 1f;
+    [SerializeField] private float maxBounciness = 1f;
     
     [Header("Pointer Settings")]
     [SerializeField] private Transform aimPointer;
@@ -47,6 +54,9 @@ public class BubbleMovement : MonoBehaviour
         // Set initial gravity
         rb.gravityScale = baseGravityScale;
         
+        totalScaleRange = maxBubbleScale - minBubbleScale;
+        sizeChangePerTap = totalScaleRange / tapsToMax;
+        
         // Set initial scale based on base gravity
         currentScale = Mathf.Lerp(maxBubbleScale, minBubbleScale, 
             (baseGravityScale - minGravityScale) / (maxGravityScale - minGravityScale));
@@ -68,6 +78,13 @@ public class BubbleMovement : MonoBehaviour
         HandleProjectiles();
     }
 
+    private void AdjustBounciness()
+    {
+        float scalePercent = Mathf.InverseLerp(minGravityScale, maxGravityScale, rb.gravityScale);   
+        float bounciness = Mathf.Lerp(minBounciness, maxBounciness, scalePercent);
+        rb.sharedMaterial.bounciness = bounciness;
+    }
+
     private void HandleBubbleSize()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -75,6 +92,7 @@ public class BubbleMovement : MonoBehaviour
             totalScaleRange = maxBubbleScale - minBubbleScale;
             sizeChangePerTap = totalScaleRange / tapsToMax;
             currentScale = Mathf.Min(currentScale + sizeChangePerTap, maxBubbleScale);
+            AdjustBounciness();
         }
 
         // Apply scale directly
@@ -122,16 +140,18 @@ public class BubbleMovement : MonoBehaviour
             Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
             float projectileForce = Mathf.Lerp(minProjectileForce, maxProjectileForce, chargeFactor);
             projectileRb.AddForce(direction * projectileForce, ForceMode2D.Impulse);
-
+            
             // Apply recoil force to player
-            rb.AddForce(-direction * projectileForce, ForceMode2D.Impulse);
-
+            float recoilForce = Mathf.Lerp(minPlayerRecoilForce, maxPlayerRecoilForce, chargeFactor);
+            rb.AddForce(-direction * recoilForce, ForceMode2D.Impulse);
+            
             // Calculate size change per tap (same as in HandleBubbleSize)
-            float totalScaleRange = maxBubbleScale - minBubbleScale;
-            float sizeChangePerTap = totalScaleRange / tapsToMax;
+            totalScaleRange = maxBubbleScale - minBubbleScale;
+            sizeChangePerTap = totalScaleRange / tapsToMax;
             
             // Decrease size by one tap's worth
             currentScale = Mathf.Max(currentScale - sizeChangePerTap, minBubbleScale);
+            AdjustBounciness();
 
             isCharging = false;
         }
