@@ -11,4 +11,9 @@ public class Game : MonoBehaviour
    {
       DontDestroyOnLoad(gameObject);
    }
+
+   public static void Clear()
+   {
+      SessionData = new SessionData();
+   }
 }
