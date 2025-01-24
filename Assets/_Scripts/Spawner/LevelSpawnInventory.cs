@@ -14,6 +14,7 @@ namespace _Scripts.Spawner
         {
             [Required] public SpawnableWrapper spawnable;
             [MinValue(0)] public int spawnTime;
+            [MinValue(-1)] public int despawnTime; 
         }
 
         [TableList]
@@ -37,7 +38,8 @@ namespace _Scripts.Spawner
                 var duplicate = new SpawnData
                 {
                     spawnable = lastSpawn.spawnable,
-                    spawnTime = lastSpawn.spawnTime
+                    spawnTime = lastSpawn.spawnTime,
+                    despawnTime = lastSpawn.despawnTime,
                 };
 
                 spawns.Add(duplicate);

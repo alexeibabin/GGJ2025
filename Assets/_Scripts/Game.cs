@@ -1,7 +1,3 @@
-using _Scripts.Spawner;
-using Sirenix.OdinInspector;
-using UnityEngine;
-
 public static class Game
 {
    public static IEventHub EventHub { get; private set; } = new EventHub();

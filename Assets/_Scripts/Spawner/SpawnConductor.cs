@@ -24,6 +24,11 @@ namespace _Scripts.Spawner
                 {
                     spawnData.spawnable.Spawn();
                 }
+                
+                if (spawnData.despawnTime == progressTimeAsInt)
+                {
+                    spawnData.spawnable.Despawn();
+                }
             }
 
             JamLogger.LogInfo(progressTimeAsInt.ToString(CultureInfo.InvariantCulture));

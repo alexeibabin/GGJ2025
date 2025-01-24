@@ -10,6 +10,8 @@ namespace _Scripts.Spawner
     public class SpawnableWrapper
     {
         [SerializeField] private GameObject spawnablePrefab;
+        
+        private GameObject _instance;
         private const float FADE_IN_DURATION = 0.25f;
         private const float FADE_OUT_DURATION = 0.25f;
 
@@ -17,9 +19,9 @@ namespace _Scripts.Spawner
         {
             if (spawnablePrefab != null)
             {
-                var instance = Object.Instantiate(spawnablePrefab, position, Quaternion.identity);
-                FadeIn(instance);
-                Game.EventHub.Notify(new SpawnInEvent(instance));
+                _instance = Object.Instantiate(spawnablePrefab, position, Quaternion.identity);
+                FadeIn(_instance);
+                Game.EventHub.Notify(new SpawnInEvent(_instance));
             }
             else
             {
@@ -27,14 +29,22 @@ namespace _Scripts.Spawner
             }
         }
 
-        public void Destroy(GameObject instance)
+        public void Despawn()
         {
-            if (instance != null)
+            if (_instance != null)
             {
-                FadeOut(instance, () =>
+                Destroy(_instance);
+            }
+        }
+
+        public void Destroy(GameObject spawnable)
+        {
+            if (spawnable != null)
+            {
+                FadeOut(spawnable, () =>
                 {
-                    Game.EventHub.Notify(new SpawnOutEvent(instance));
-                    Object.Destroy(instance);
+                    Game.EventHub.Notify(new SpawnOutEvent(spawnable));
+                    Object.Destroy(spawnable);
                 });
             }
             else
@@ -43,9 +53,9 @@ namespace _Scripts.Spawner
             }
         }
 
-        private void FadeIn(GameObject instance)
+        private void FadeIn(GameObject spawnable)
         {
-            if (instance.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+            if (spawnable.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
             {
                 Color color = spriteRenderer.color;
                 color.a = 0;
@@ -58,9 +68,9 @@ namespace _Scripts.Spawner
             }
         }
 
-        private void FadeOut(GameObject instance, Action onComplete)
+        private void FadeOut(GameObject spawnable, Action onComplete)
         {
-            if (instance.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+            if (spawnable.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
             {
                 spriteRenderer.DOFade(0f, FADE_OUT_DURATION).OnComplete(() => onComplete?.Invoke());
             }
