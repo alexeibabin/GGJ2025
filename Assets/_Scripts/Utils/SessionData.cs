@@ -3,7 +3,7 @@ public class SessionData
     public float BubbleHealth;
     public float ProgressTimer;
     public float TimeSinceLastTransition;
-    public bool isPaused;
+    public bool IsPaused;
 
     public SessionData()
     {
