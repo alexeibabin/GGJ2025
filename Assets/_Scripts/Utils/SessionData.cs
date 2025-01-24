@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Scripts.Collectables;
+using UniRx;
 
 public class SessionData
 {
@@ -8,7 +9,7 @@ public class SessionData
     public float TimeSinceLastTransition;
     public bool IsPaused;
 
-    private Dictionary<ECollectableType, int> CollectedItems { get; set; } = new();
+    public ReactiveDictionary<ECollectableType, int> CollectedItems { get; set; } = new();
 
     public SessionData()
     {
@@ -25,10 +26,17 @@ public class SessionData
 
     public int GetCollectableCount(ECollectableType collectableType)
     {
-        return CollectedItems.GetValueOrDefault(collectableType, 0);
+        if (CollectedItems.ContainsKey(collectableType))
+        {
+            return CollectedItems[collectableType];
+        }
+        else
+        {
+            return 0;
+        }
     }
 
-    private void ClearCollectables()
+    public void ClearCollectables()
     {
         CollectedItems.Clear();
     }
