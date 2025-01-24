@@ -8,6 +8,8 @@ public class BubbleMovement : MonoBehaviour
     [Header("Bubble Size Control")]
     [SerializeField] private float minBubbleScale = 0.5f;
     [SerializeField] private float maxBubbleScale = 2f;
+    [SerializeField] private float minStopForce = 2f;
+    [SerializeField] private float maxStopForce = 2f;
     [SerializeField] private int tapsToMax = 5;  // Number of taps to reach max size
     
     [Header("Gravity Control")]
@@ -81,6 +83,10 @@ public class BubbleMovement : MonoBehaviour
         // Update gravity scale based on current size
         float t = (currentScale - minBubbleScale) / (maxBubbleScale - minBubbleScale);
         float gravityScale = Mathf.Lerp(maxGravityScale, minGravityScale, t);
+
+        float stopForce = Mathf.Lerp(minStopForce, maxStopForce, t) * -1;
+        
+        rb.AddForce(rb.linearVelocity.normalized * stopForce );
         
         // Ensure gravity maintains its original sign
         float gravitySign = Mathf.Sign(baseGravityScale);
