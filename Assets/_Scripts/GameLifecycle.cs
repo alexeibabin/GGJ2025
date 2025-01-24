@@ -45,7 +45,7 @@ public class GameLifecycle : MonoBehaviour
 
     private void Pause(PauseEvent evt)
     {
-        Game.SessionData.isPaused = !Game.SessionData.isPaused;
+        Game.SessionData.IsPaused = !Game.SessionData.IsPaused;
     }
 
     private void StartTimer(GameTimerStartEvent evt)
@@ -55,7 +55,7 @@ public class GameLifecycle : MonoBehaviour
 
     private IEnumerator TimerLoop()
     {
-        if (Game.SessionData.isPaused)
+        if (!Game.SessionData.IsPaused)
         {
             Game.SessionData.ProgressTimer += Time.deltaTime;
             Game.SessionData.TimeSinceLastTransition += Time.deltaTime;
