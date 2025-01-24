@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using _Scripts.Collectables;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SessionData
 {
-    public float BubbleHealth;
+    public Observable<float> BubbleHealth;
     public float ProgressTimer;
     public float TimeSinceLastTransition;
     public int TransitionsCompleted;
@@ -22,7 +23,7 @@ public class SessionData
 
     public void ResetSessionData()
     {
-        BubbleHealth = 1;
+        BubbleHealth.value = 1;
         ProgressTimer = 0;
         TimeSinceLastTransition = 0;
         ClearCollectables();

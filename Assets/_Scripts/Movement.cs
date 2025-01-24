@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -45,6 +46,16 @@ public class BubbleMovement : MonoBehaviour
     private float totalScaleRange;
     private float sizeChangePerTap;
 
+    private void Awake()
+    {
+        Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
+    }
+
+    private void OnGameReset(ResetEvent evt)
+    {
+        ResetMovement();    
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -67,15 +78,20 @@ public class BubbleMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = Vector3.zero;
-            rb.totalForce = Vector2.zero;
-            rb.linearVelocity = Vector2.zero;
-            rb.gravityScale = baseGravityScale;
-            currentScale = Mathf.Lerp(maxBubbleScale, minBubbleScale, 
-                (baseGravityScale - minGravityScale) / (maxGravityScale - minGravityScale));
+            ResetMovement();
         }
         HandleBubbleSize();
         HandleProjectiles();
+    }
+
+    private void ResetMovement()
+    {
+        transform.position = Vector3.zero;
+        rb.totalForce = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = baseGravityScale;
+        currentScale = Mathf.Lerp(maxBubbleScale, minBubbleScale, 
+            (baseGravityScale - minGravityScale) / (maxGravityScale - minGravityScale));
     }
 
     private void AdjustBounciness()
