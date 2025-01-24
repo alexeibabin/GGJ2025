@@ -1,17 +1,45 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class SceneController : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
-    // Loads the specified scene
-    public void LoadScene(string sceneName)
+
+    [SerializeField] private Button startGame;
+    [SerializeField] private Button quitGame;
+    [SerializeField] private Button about;
+
+    private void Awake()
     {
-        SceneManager.LoadScene(sceneName);
+        if (startGame != null)
+        {
+            startGame.onClick.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning("start Game button is not assigned!");
+        }
+        
     }
 
-    // Quits the game and returns to the main menu
-    public void QuitToMainMenu(string mainMenuSceneName)
+    // Load the Main Menu Scene
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    // Load the Main Game Scene
+    public void LoadMainGame()
+    {
+        SceneManager.LoadScene("MainGameScene");
+        Debug.Log("Loading Main Game right now?");
+    }
+
+    // Load the Main Menu instead of quitting the application
+    public void QuitGame()
+    {
+        Debug.Log("Returning to Main Menu...");
+        LoadMainMenu(); // Calls the LoadMainMenu method
     }
 }
