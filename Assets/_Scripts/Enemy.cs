@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxXDirection = 1;
     [SerializeField] private float minYDirection = -1;
     [SerializeField] private float maxYDirection = 1;
+
+    [SerializeField] private GameObject Art;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +51,11 @@ public class Enemy : MonoBehaviour
         
         float speed = Mathf.Clamp(rb.linearVelocity.magnitude, minSpeed, maxSpeed);
         rb.linearVelocity = rb.linearVelocity.normalized * speed;
+
+        // Rotate the art based on movement direction
+        float yRotation = rb.linearVelocity.x > 0 ? 0f : 180f;
+        Art.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
