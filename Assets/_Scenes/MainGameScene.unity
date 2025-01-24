@@ -441,10 +441,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1771826842703421566, guid: 07473a999d93e499dad69c2cdcf8b294, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 2598717363764948046, guid: a8914a8abe294484490cc71b40c9c5fb, type: 3}
     - target: {fileID: 2816303939974490774, guid: 07473a999d93e499dad69c2cdcf8b294, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -496,10 +492,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5944206614971830156, guid: 07473a999d93e499dad69c2cdcf8b294, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1481394230}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07473a999d93e499dad69c2cdcf8b294, type: 3}
 --- !u!1001 &1085123744
 PrefabInstance:
@@ -2231,27 +2224,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1481394226 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5944206614971830156, guid: 07473a999d93e499dad69c2cdcf8b294, type: 3}
-  m_PrefabInstance: {fileID: 977337480}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1481394230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481394226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentShaderType: 0
-  normalStrength: 5
-  normalSmoothing: 1
-  computingNormal: 0
 --- !u!1001 &1675355491
 PrefabInstance:
   m_ObjectHideFlags: 0
