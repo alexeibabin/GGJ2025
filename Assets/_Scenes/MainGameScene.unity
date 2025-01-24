@@ -618,7 +618,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7353792208047404279
+--- !u!1001 &1965903327
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -629,10 +629,6 @@ PrefabInstance:
     - target: {fileID: 3129992265712279798, guid: eefe603db46774fb993f04d3abca1231, type: 3}
       propertyPath: m_Name
       value: PauseMenuCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129992265712279798, guid: eefe603db46774fb993f04d3abca1231, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5934879031102750584, guid: eefe603db46774fb993f04d3abca1231, type: 3}
       propertyPath: m_Pivot.x
@@ -724,7 +720,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1363258609}
-  - {fileID: 7353792208047404279}
+  - {fileID: 1965903327}
   - {fileID: 1439101868}
   - {fileID: 37562015}
   - {fileID: 1085123744}
