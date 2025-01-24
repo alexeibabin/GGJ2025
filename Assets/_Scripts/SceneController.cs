@@ -12,6 +12,10 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
+        startGame.onClick.AddListener(LoadMainGame);
+        quitGame.onClick.AddListener(QuitGame);
+        about.onClick.AddListener(LoadAbout);
+        
         if (startGame != null)
         {
             startGame.onClick.Invoke();
@@ -21,6 +25,11 @@ public class SceneLoader : MonoBehaviour
             Debug.LogWarning("start Game button is not assigned!");
         }
         
+    }
+
+    private void LoadAbout()
+    {
+        throw new NotImplementedException();
     }
 
     // Load the Main Menu Scene
