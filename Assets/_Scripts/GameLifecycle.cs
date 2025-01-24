@@ -87,8 +87,8 @@ public class GameLifecycle : MonoBehaviour
                 JamLogger.LogInfo($"Transition #{Game.SessionData.TransitionsCompleted} has started");
                 Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.ProgressTimer));
             }
-            
-            yield return new WaitForSeconds(countInterval);
+
+            yield return null;
         }
     }
     
