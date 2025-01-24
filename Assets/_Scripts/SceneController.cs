@@ -41,4 +41,9 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("Returning to Main Menu...");
         LoadMainMenu(); // Calls the LoadMainMenu method
     }
+
+    public void pauseGame()
+    {
+        Game.EventHub.Notify(new PauseEvent());
+    }
 }
