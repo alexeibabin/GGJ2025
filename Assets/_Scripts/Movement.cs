@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BubbleMovement : MonoBehaviour
@@ -6,9 +7,7 @@ public class BubbleMovement : MonoBehaviour
     [Header("Bubble Size Control")]
     [SerializeField] private float minBubbleScale = 0.5f;
     [SerializeField] private float maxBubbleScale = 2f;
-    [SerializeField] private float scaleSpeed = 2f;
-    [SerializeField] private float minScaleDecrease = 0.2f;  // Added: minimum size decrease per shot
-    [SerializeField] private float maxScaleDecrease = 0.5f;  // Added: maximum size decrease per shot
+    [SerializeField] private int tapsToMax = 5;  // Number of taps to reach max size
     
     [Header("Gravity Control")]
     [SerializeField] private float minGravityScale = 0.2f;
@@ -28,6 +27,10 @@ public class BubbleMovement : MonoBehaviour
     private bool isCharging = false;
     private Camera mainCamera;
 
+    // Calculate size change per tap
+    private float totalScaleRange;
+    private float sizeChangePerTap;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +48,15 @@ public class BubbleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = Vector3.zero;
+            rb.totalForce = Vector2.zero;
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = baseGravityScale;
+            currentScale = Mathf.Lerp(maxBubbleScale, minBubbleScale, 
+                (baseGravityScale - minGravityScale) / (maxGravityScale - minGravityScale));
+        }
         HandleBubbleSize();
         HandleProjectiles();
     }
@@ -52,9 +64,10 @@ public class BubbleMovement : MonoBehaviour
     private void HandleBubbleSize()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Instantly increase size by a step
-            currentScale = Mathf.Min(currentScale + (scaleSpeed * Time.deltaTime), maxBubbleScale);
+        {   
+            totalScaleRange = maxBubbleScale - minBubbleScale;
+            sizeChangePerTap = totalScaleRange / tapsToMax;
+            currentScale = Mathf.Min(currentScale + sizeChangePerTap, maxBubbleScale);
         }
 
         // Apply scale directly
@@ -100,9 +113,12 @@ public class BubbleMovement : MonoBehaviour
             // Apply recoil force to player
             rb.AddForce(-direction * projectileForce, ForceMode2D.Impulse);
 
-            // Calculate size decrease based on projectile scale
-            float scaleDecrease = Mathf.Lerp(minScaleDecrease, maxScaleDecrease, chargeFactor);
-            currentScale = Mathf.Max(currentScale - scaleDecrease, minBubbleScale);
+            // Calculate size change per tap (same as in HandleBubbleSize)
+            float totalScaleRange = maxBubbleScale - minBubbleScale;
+            float sizeChangePerTap = totalScaleRange / tapsToMax;
+            
+            // Decrease size by one tap's worth
+            currentScale = Mathf.Max(currentScale - sizeChangePerTap, minBubbleScale);
 
             isCharging = false;
         }
