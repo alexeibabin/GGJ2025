@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
 
@@ -9,6 +10,12 @@ public struct GameTimerStartEvent : IEvent
 
 public struct TransitionStartedEvent : IEvent
 {
+    public float progressTimer;
+    
+    public TransitionStartedEvent(float progressionTimer)
+    {
+        progressTimer = progressionTimer;
+    }
 }
 
 public struct PauseEvent : IEvent
@@ -26,7 +33,7 @@ public class GameLifecycle : MonoBehaviour
 
     private Coroutine lifecycleCoro;
     
-    private void Awake()
+    private void Start()
     {
         Game.EventHub.Subscribe<GameTimerStartEvent>(StartTimer);
         Game.EventHub.Subscribe<PauseEvent>(Pause);
@@ -67,7 +74,7 @@ public class GameLifecycle : MonoBehaviour
 
     private IEnumerator TimerLoop()
     {
-        if (!Game.SessionData.IsPaused)
+        while (!Game.SessionData.IsPaused)
         {
             Game.SessionData.ProgressTimer += Time.deltaTime;
             Game.SessionData.TimeSinceLastTransition += Time.deltaTime;
@@ -75,10 +82,16 @@ public class GameLifecycle : MonoBehaviour
             if (Game.SessionData.TimeSinceLastTransition >= timeBetweenTransitions)
             {
                 Game.SessionData.TimeSinceLastTransition = 0;
-                Game.EventHub.Notify(new TransitionStartedEvent());
+                Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.ProgressTimer));
             }
             
             yield return new WaitForSeconds(countInterval);
         }
+    }
+    
+    [ButtonGroup] 
+    private void StartGame()
+    {
+        Game.EventHub.Notify(new GameTimerStartEvent());
     }
 }
