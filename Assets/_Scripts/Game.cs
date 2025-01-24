@@ -4,13 +4,13 @@ public class Game : MonoBehaviour
 {
    public static IEventHub EventHub { get; private set; }
 
-   public static SessionData SessionData { get; private set; } = new SessionData();
+   public static SessionData SessionData { get; private set; }
 
    private void Awake()
    {
       EventHub = new EventHub();
-      SessionData = new SessionData();
       DontDestroyOnLoad(gameObject);
+      Clear();
    }
 
    public static void Clear()
