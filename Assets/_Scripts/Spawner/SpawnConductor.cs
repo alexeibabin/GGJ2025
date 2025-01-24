@@ -12,6 +12,15 @@ namespace _Scripts.Spawner
         private void Start()
         {
             Game.EventHub.Subscribe<TransitionStartedEvent>(OnTransitionStarted);
+            Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
+        }
+
+        private void OnGameReset(ResetEvent evt)
+        {
+            foreach (var spawnData in levelSpawnInventory[Game.SessionData.CurrentLevel].Spawns)
+            {
+                spawnData.spawnable.Despawn();
+            }
         }
 
         private void OnTransitionStarted(TransitionStartedEvent evt)
@@ -33,6 +42,5 @@ namespace _Scripts.Spawner
 
             JamLogger.LogInfo(progressTimeAsInt.ToString(CultureInfo.InvariantCulture));
         }
-
     }
 }
