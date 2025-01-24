@@ -46,7 +46,7 @@ namespace _Scripts.Spawner
             {
                 if (spawnData.spawnTime == progressTimeAsInt)
                 {
-                    spawnData.spawnable.Spawn();
+                    spawnData.spawnable.Spawn(spawnData.spawnPosition);
                 }
                 
                 if (spawnData.despawnTime == progressTimeAsInt)
