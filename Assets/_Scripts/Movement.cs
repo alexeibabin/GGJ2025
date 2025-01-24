@@ -52,7 +52,7 @@ public class BubbleMovement : MonoBehaviour
         {
             transform.position = Vector3.zero;
             rb.totalForce = Vector2.zero;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = baseGravityScale;
             currentScale = Mathf.Lerp(maxBubbleScale, minBubbleScale, 
                 (baseGravityScale - minGravityScale) / (maxGravityScale - minGravityScale));
