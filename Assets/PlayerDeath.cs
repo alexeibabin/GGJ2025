@@ -7,7 +7,7 @@ public class PlayerDeath : MonoBehaviour
 
     public GameObject deathArt;
 
-    private void OnEnable()
+    public void PlayDeathSequence()
     {
         livingArt.SetActive(false);
         deathArt.SetActive(true);
