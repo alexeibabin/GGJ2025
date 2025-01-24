@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _Scripts.Utils;
 using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
@@ -51,10 +52,8 @@ public class GameLifecycle : MonoBehaviour
 
     private void Reset(ResetEvent evt)
     {
-        Game.SessionData.ProgressTimer = 0;
-        Game.SessionData.TimeSinceLastTransition = 0;
-        Game.SessionData.ClearCollectables();
-
+        Game.SessionData.ResetSessionData();
+        
         if (lifecycleCoro != null)
         {
             StopCoroutine(lifecycleCoro);
@@ -69,6 +68,7 @@ public class GameLifecycle : MonoBehaviour
 
     private void StartTimer(GameTimerStartEvent evt)
     {
+        JamLogger.LogInfo($"Game timer has started");
         lifecycleCoro = StartCoroutine(TimerLoop());
     }
 
@@ -81,7 +81,11 @@ public class GameLifecycle : MonoBehaviour
 
             if (Game.SessionData.TimeSinceLastTransition >= timeBetweenTransitions)
             {
+                //  Move this to transition animation complete?
+                Game.SessionData.TransitionsCompleted++;
                 Game.SessionData.TimeSinceLastTransition = 0;
+                
+                JamLogger.LogInfo($"Transition #{Game.SessionData.TransitionsCompleted} has started");
                 Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.ProgressTimer));
             }
             
