@@ -33,8 +33,14 @@ namespace _Scripts.Spawner
             var progressTimeAsInt = Mathf.FloorToInt(Game.SessionData.ProgressTimer);
             
             JamLogger.LogInfo($"Attempting to spawn for time: {progressTimeAsInt}");
+            
+            if (Game.SessionData.TransitionsCompleted >= levelSpawnInventory.Count)
+            {
+                JamLogger.LogWarning("No more levels to spawn!");
+                return;
+            }
 
-            foreach (var spawnData in levelSpawnInventory[Game.SessionData.CurrentLevel].Spawns)
+            foreach (var spawnData in levelSpawnInventory[Game.SessionData.TransitionsCompleted].Spawns)
             {
                 if (spawnData.spawnTime == progressTimeAsInt)
                 {

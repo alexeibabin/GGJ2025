@@ -11,11 +11,11 @@ public struct GameTimerStartEvent : IEvent
 
 public struct TransitionStartedEvent : IEvent
 {
-    public float progressTimer;
+    public int transitionNumber;
     
-    public TransitionStartedEvent(float progressionTimer)
+    public TransitionStartedEvent(int transition)
     {
-        progressTimer = progressionTimer;
+        transitionNumber = transition;
     }
 }
 
@@ -92,7 +92,7 @@ public class GameLifecycle : MonoBehaviour
                 Game.SessionData.TimeSinceLastTransition = 0;
                 
                 JamLogger.LogInfo($"Transition #{Game.SessionData.TransitionsCompleted} has started");
-                Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.ProgressTimer));
+                Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.TransitionsCompleted));
             }
 
             if (Mathf.RoundToInt(Game.SessionData.ProgressTimer) >
