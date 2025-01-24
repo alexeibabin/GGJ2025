@@ -51,13 +51,19 @@ public class GameLifecycle : MonoBehaviour
 
     private void Reset(ResetEvent evt)
     {
-        Game.SessionData.ResetSessionData();
+        StartCoroutine(ResetDataDelayed());
         
         if (lifecycleCoro != null)
         {
             StopCoroutine(lifecycleCoro);
             lifecycleCoro = null;
         }
+    }
+    
+    IEnumerator ResetDataDelayed()
+    {
+        yield return null; 
+        Game.SessionData.ResetSessionData();
     }
 
     private void Pause(PauseEvent evt)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
+using _Scripts.Collectables;
 using _Scripts.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -34,8 +35,11 @@ namespace _Scripts.Spawner
             {
                 spawnData.spawnable.Despawn();
             }
-            
-            PlaceDefaultCollectible();
+
+            if (Game.SessionData.GetCollectableCount(ECollectableType.Coin) > 0)
+            {
+                PlaceDefaultCollectible();
+            }
         }
 
         private void OnTransitionStarted(TransitionStartedEvent evt)
