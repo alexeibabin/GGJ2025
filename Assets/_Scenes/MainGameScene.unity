@@ -792,15 +792,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4048257994897021691, guid: 23f8eab1738154bbabb16558c78e50be, type: 3}
       propertyPath: m_Color.b
-      value: 0.85506403
+      value: 0.28508162
       objectReference: {fileID: 0}
     - target: {fileID: 4048257994897021691, guid: 23f8eab1738154bbabb16558c78e50be, type: 3}
       propertyPath: m_Color.g
-      value: 0.85506403
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4048257994897021691, guid: 23f8eab1738154bbabb16558c78e50be, type: 3}
       propertyPath: m_Color.r
-      value: 0.990566
+      value: 0.2924528
       objectReference: {fileID: 0}
     - target: {fileID: 7207919421502738526, guid: 23f8eab1738154bbabb16558c78e50be, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[0].Array.data[0].x
@@ -2264,6 +2264,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5934879031102750584, guid: eefe603db46774fb993f04d3abca1231, type: 3}
   m_PrefabInstance: {fileID: 1965903327}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1314668653 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3876172965294211353, guid: eefe603db46774fb993f04d3abca1231, type: 3}
+  m_PrefabInstance: {fileID: 1965903327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363258605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,6 +2613,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 281552445641907028, guid: eefe603db46774fb993f04d3abca1231, type: 3}
+      propertyPath: quitGame
+      value: 
+      objectReference: {fileID: 1314668653}
     - target: {fileID: 3129992265712279798, guid: eefe603db46774fb993f04d3abca1231, type: 3}
       propertyPath: m_Name
       value: PauseMenuCanvas

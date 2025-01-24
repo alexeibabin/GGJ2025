@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 7644749694252308882}
   - component: {fileID: 4561881366412549662}
   - component: {fileID: 6978497512360682886}
+  - component: {fileID: 281552445641907028}
   m_Layer: 5
   m_Name: PauseMenuCanvas
   m_TagString: Untagged
@@ -573,6 +574,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 1945011033685818487}
   backButton: {fileID: 3876172965294211353}
+--- !u!114 &281552445641907028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129992265712279798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd1e660c38714757b20334b27dc3e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startGame: {fileID: 1945011033685818487}
+  quitGame: {fileID: 0}
+  about: {fileID: 3876172965294211353}
+  pauseMenuPrefab: {fileID: 460961890304917746}
 --- !u!1 &3152335792885383825
 GameObject:
   m_ObjectHideFlags: 0
