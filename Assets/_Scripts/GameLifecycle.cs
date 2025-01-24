@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using UniRx;
 using UnityEngine;
 
 public struct GameTimerStartEvent : IEvent
@@ -29,17 +31,27 @@ public class GameLifecycle : MonoBehaviour
         Game.EventHub.Subscribe<GameTimerStartEvent>(StartTimer);
         Game.EventHub.Subscribe<PauseEvent>(Pause);
         Game.EventHub.Subscribe<ResetEvent>(Reset);
+        Game.SessionData.CollectedItems.ObserveCountChanged().Subscribe(StartGameOnFirstCollect).AddTo(this);
+    }
 
+    private void StartGameOnFirstCollect(int amount)
+    {
+        if (amount == 1 && lifecycleCoro == null)
+        {
+            Game.EventHub.Notify(new GameTimerStartEvent());
+        }
     }
 
     private void Reset(ResetEvent evt)
     {
         Game.SessionData.ProgressTimer = 0;
         Game.SessionData.TimeSinceLastTransition = 0;
+        Game.SessionData.ClearCollectables();
 
         if (lifecycleCoro != null)
         {
             StopCoroutine(lifecycleCoro);
+            lifecycleCoro = null;
         }
     }
 
