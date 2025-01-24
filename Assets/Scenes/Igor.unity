@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31286d132f546a983678efe10290eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelSpawnInventory: {fileID: 11400000, guid: c2a53ba8b65d34c70bc809b7a60d50e5, type: 2}
 --- !u!4 &1622862159
 Transform:
   m_ObjectHideFlags: 0
@@ -388,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 1622862157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.079983674, y: 0.5872085, z: -0.025520194}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -572,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f53524d78ed84291afda505a2d60275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenTransitions: 3
+  timeBetweenTransitions: 1
   countInterval: 0
 --- !u!1 &2128141229
 GameObject:

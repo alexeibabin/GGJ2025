@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 using _Scripts.Utils;
 using UnityEngine;
@@ -7,6 +6,8 @@ namespace _Scripts.Spawner
 {
     public class SpawnConductor : MonoBehaviour
     {
+        [SerializeField] private LevelSpawnInventory levelSpawnInventory;
+
         private void Start()
         {
             Game.EventHub.Subscribe<TransitionStartedEvent>(OnTransitionStarted);
@@ -14,7 +15,18 @@ namespace _Scripts.Spawner
 
         private void OnTransitionStarted(TransitionStartedEvent evt)
         {
-            JamLogger.LogInfo(evt.progressTimer.ToString(CultureInfo.InvariantCulture));
+            var progressTimeAsInt = Mathf.FloorToInt(evt.progressTimer);
+
+            foreach (var spawnData in levelSpawnInventory.Spawns)
+            {
+                if (spawnData.spawnTime == progressTimeAsInt)
+                {
+                    spawnData.spawnable.Spawn();
+                }
+            }
+
+            JamLogger.LogInfo(progressTimeAsInt.ToString(CultureInfo.InvariantCulture));
         }
+
     }
 }
