@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace _Scripts.Spawner
 {
+    public struct AttemptSpawnEvent : IEvent
+    {
+    }
+
     public class SpawnConductor : MonoBehaviour
     {
         [Header("Initial spawnable settings")]
@@ -18,10 +22,32 @@ namespace _Scripts.Spawner
 
         private void Start()
         {
-            Game.EventHub.Subscribe<TransitionStartedEvent>(OnTransitionStarted);
+            Game.EventHub.Subscribe<AttemptSpawnEvent>(AttemptSpawnObstacles);
             Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
 
             PlaceDefaultCollectible();
+        }
+
+        private void AttemptSpawnObstacles(AttemptSpawnEvent evt)
+        {
+            var progressTimeAsInt = Mathf.FloorToInt(Game.SessionData.ProgressTimer);
+            
+            JamLogger.LogInfo($"Attempting to spawn for time: {progressTimeAsInt}");
+
+            foreach (var spawnData in levelSpawnInventory[Game.SessionData.CurrentLevel].Spawns)
+            {
+                if (spawnData.spawnTime == progressTimeAsInt)
+                {
+                    spawnData.spawnable.Spawn(spawnData.spawnPosition);
+                }
+                
+                if (spawnData.despawnTime == progressTimeAsInt)
+                {
+                    spawnData.spawnable.Despawn();
+                }
+            }
+
+            JamLogger.LogInfo(progressTimeAsInt.ToString(CultureInfo.InvariantCulture));
         }
 
         private void PlaceDefaultCollectible()
@@ -40,26 +66,6 @@ namespace _Scripts.Spawner
             {
                 PlaceDefaultCollectible();
             }
-        }
-
-        private void OnTransitionStarted(TransitionStartedEvent evt)
-        {
-            var progressTimeAsInt = Mathf.FloorToInt(evt.progressTimer);
-
-            foreach (var spawnData in levelSpawnInventory[Game.SessionData.CurrentLevel].Spawns)
-            {
-                if (spawnData.spawnTime == progressTimeAsInt)
-                {
-                    spawnData.spawnable.Spawn(spawnData.spawnPosition);
-                }
-                
-                if (spawnData.despawnTime == progressTimeAsInt)
-                {
-                    spawnData.spawnable.Despawn();
-                }
-            }
-
-            JamLogger.LogInfo(progressTimeAsInt.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

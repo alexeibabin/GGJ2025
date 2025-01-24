@@ -1,4 +1,5 @@
 using System.Collections;
+using _Scripts.Spawner;
 using _Scripts.Utils;
 using Sirenix.OdinInspector;
 using UniRx;
@@ -92,6 +93,12 @@ public class GameLifecycle : MonoBehaviour
                 
                 JamLogger.LogInfo($"Transition #{Game.SessionData.TransitionsCompleted} has started");
                 Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.ProgressTimer));
+            }
+
+            if (Mathf.RoundToInt(Game.SessionData.ProgressTimer) >
+                Mathf.RoundToInt(Game.SessionData.ProgressTimer - Time.deltaTime))
+            {
+                Game.EventHub.Notify(new AttemptSpawnEvent());
             }
 
             yield return null;
