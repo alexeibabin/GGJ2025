@@ -15,16 +15,6 @@ public class SceneLoader : MonoBehaviour
         startGame.onClick.AddListener(LoadMainGame);
         quitGame.onClick.AddListener(QuitGame);
         about.onClick.AddListener(LoadAbout);
-        
-        if (startGame != null)
-        {
-            startGame.onClick.Invoke();
-        }
-        else
-        {
-            Debug.LogWarning("start Game button is not assigned!");
-        }
-        
     }
 
     private void LoadAbout()
