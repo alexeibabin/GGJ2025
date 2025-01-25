@@ -10,7 +10,7 @@ namespace _Scripts.Spawner
     {
     }
     
-    public struct SpawnerConcludedEvent : IEvent
+    public struct EndGameStartedEvent : IEvent
     {
     }
 
@@ -45,7 +45,7 @@ namespace _Scripts.Spawner
             if (Game.SessionData.TransitionsCompleted >= levelSpawnInventory.Count)
             {
                 JamLogger.LogWarning("No more levels to spawn!");
-                Game.EventHub.Notify(new SpawnerConcludedEvent());
+                Game.EventHub.Notify(new EndGameStartedEvent());
                 _isSpawning = false;
                 
                 return;
