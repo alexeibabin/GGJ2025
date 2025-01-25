@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementScript: {fileID: 1771826842703421566}
   livingArt: {fileID: 7996911237038298227}
-  deathArt: {fileID: 1258743781253644893}
+  deathArt: {fileID: 1817797803601600, guid: a9bd2ee9d66d5411f933bc3bdd242ac6, type: 3}
 --- !u!1 &5944206614971830156
 GameObject:
   m_ObjectHideFlags: 0
