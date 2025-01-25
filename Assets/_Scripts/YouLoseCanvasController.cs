@@ -24,6 +24,7 @@ public class YouLoseCanvasController : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToLoseScreen);
         screen.SetActive(true);
+        Game.EventHub.Notify(new PauseEvent());
     }
 
     public void Retry()
