@@ -86,9 +86,9 @@ MonoBehaviour:
   minStopForce: 0
   maxStopForce: 0
   tapsToMax: 10
-  minGravityScale: -0.5
+  minGravityScale: -0.05
   baseGravityScale: 0
-  maxGravityScale: 0.2
+  maxGravityScale: 0.02
   projectilePrefab: {fileID: 2598717363764948046, guid: a8914a8abe294484490cc71b40c9c5fb, type: 3}
   minProjectileForce: 5
   maxProjectileForce: 15
@@ -97,7 +97,7 @@ MonoBehaviour:
   minPlayerRecoilForce: 5
   maxPlayerRecoilForce: 30
   minBounciness: 0.4
-  maxBounciness: 1.2
+  maxBounciness: 1
   aimPointer: {fileID: 7690911788901419062}
   pointerDistance: 0.5
 --- !u!50 &8926399189460360415

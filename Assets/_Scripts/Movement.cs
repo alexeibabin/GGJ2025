@@ -48,6 +48,14 @@ public class BubbleMovement : MonoBehaviour
     private float totalScaleRange;
     private float sizeChangePerTap;
 
+    private float ScalePercentage
+    {
+        get
+        {
+            return (currentScale - minBubbleScale) / (maxBubbleScale - minBubbleScale);
+        }
+    }
+
     private void Awake()
     {
         Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
@@ -124,18 +132,17 @@ public class BubbleMovement : MonoBehaviour
             sizeChangePerTap = totalScaleRange / tapsToMax;
             currentScale = Mathf.Min(currentScale + sizeChangePerTap, maxBubbleScale);
             AdjustBounciness();
+            
+            float stopForce = Mathf.Lerp(minStopForce, maxStopForce, ScalePercentage) * -1;
+        
+            rb.AddForce(rb.linearVelocity.normalized * stopForce );
         }
 
         // Apply scale directly
         transform.localScale = Vector3.one * currentScale;
 
         // Update gravity scale based on current size
-        float t = (currentScale - minBubbleScale) / (maxBubbleScale - minBubbleScale);
-        float gravityScale = Mathf.Lerp(maxGravityScale, minGravityScale, t);
-
-        float stopForce = Mathf.Lerp(minStopForce, maxStopForce, t) * -1;
-        
-        rb.AddForce(rb.linearVelocity.normalized * stopForce );
+        float gravityScale = Mathf.Lerp(maxGravityScale, minGravityScale, ScalePercentage);
         
         // Ensure gravity maintains its original sign
         float gravitySign = Mathf.Sign(baseGravityScale);
