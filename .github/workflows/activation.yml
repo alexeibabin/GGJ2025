@@ -49,6 +49,7 @@ jobs:
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+        continue-on-error: true
 
       - name: Git LFS Pull
         run: |
@@ -57,19 +58,21 @@ jobs:
           git reset --hard
 
       - uses: actions/cache@v3
+        id: library-cache
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
+        continue-on-error: true
             
       - name: Free Disk Space for Android
         run: |
-         sudo swapoff -a
-         sudo rm -f /swapfile
-         sudo apt clean
-         docker rmi $(docker images -q)
-         df -h
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+          docker rmi $(docker images -q)
+          df -h
 
       - name: Build project
         uses: game-ci/unity-builder@v4
@@ -93,4 +96,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build
-      
