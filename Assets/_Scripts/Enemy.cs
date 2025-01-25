@@ -1,8 +1,9 @@
+using _Scripts;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy
 {
-    
+    private const int INITIAL_HEALTH = 3;
     private Rigidbody2D rb;
     private float timer = 0f;
     private float timeToChange = 0f;
@@ -23,12 +24,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject Art;
     [SerializeField] private GameObject Explode;
-    public float damage = 1; 
+    public float Damage => 1; 
+    
+    [SerializeField] private int _health = INITIAL_HEALTH;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
+        _health = INITIAL_HEALTH;
         timeToChange = Random.Range(minTimeToChange, maxTimeToChange);
         TakeRandomDirection(true);
     }
@@ -63,19 +68,26 @@ public class Enemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Edge"))
-        {
-            return;
-        }
-
-        if (collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag(ProjectConstants.PROJECTILE_TAG))
         {
             if (Explode != null)
             {
                 Instantiate(Explode, transform.position, Quaternion.identity);
             }
+            
+            _health--;
+            
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
-        
+
+        if (!collision.gameObject.CompareTag("Edge"))
+        {
+            return;
+        }
+
         // Get the collision normal
         Vector2 normal = collision.contacts[0].normal;
         
