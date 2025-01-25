@@ -55,17 +55,26 @@ namespace _Scripts.Spawner
 
         private void FadeIn(GameObject spawnable)
         {
+            SpriteRenderer renderer = null;
+            
             if (spawnable.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
             {
-                Color color = spriteRenderer.color;
-                color.a = 0;
-                spriteRenderer.color = color;
-                spriteRenderer.DOFade(1f, FADE_IN_DURATION);
+                renderer = spriteRenderer;
+            }
+            else if (spawnable.TryGetComponentInChildren<SpriteRenderer>(out var childSpriteRenderer))
+            {
+                renderer = childSpriteRenderer;
             }
             else
             {
                 JamLogger.LogWarning("Cannot fade in a game object without a sprite renderer!");
+                return;
             }
+            
+            var color = renderer.color;
+            color.a = 0;
+            renderer.color = color;
+            renderer.DOFade(1f, FADE_IN_DURATION);
         }
 
         private void FadeOut(GameObject spawnable, Action onComplete)
