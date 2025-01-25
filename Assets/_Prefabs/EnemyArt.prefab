@@ -218,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2706278928257474465}
   m_Layer: 0
-  m_Name: EnemySpirirtMask
+  m_Name: EnemyArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
