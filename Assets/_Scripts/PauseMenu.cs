@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button backButton;
+    [SerializeField] private Button mainMenuButton;
 
     private bool isPaused = false;
 
@@ -17,6 +18,12 @@ public class PauseMenu : MonoBehaviour
     {
         restartButton.onClick.AddListener(OnRestartClicked);
         backButton.onClick.AddListener(OnBackButtonClicked);
+        mainMenuButton.onClick.AddListener(OnReturnToMainMenuClicked);
+    }
+
+    private void OnReturnToMainMenuClicked()
+    {
+        SceneLoader.QuitGameStatic();
     }
 
     private void OnBackButtonClicked()

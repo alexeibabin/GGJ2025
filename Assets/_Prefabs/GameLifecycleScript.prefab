@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f53524d78ed84291afda505a2d60275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenTransitions: 600
+  timeBetweenTransitions: 30
   countInterval: 1
