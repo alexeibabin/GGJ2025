@@ -36,6 +36,9 @@ public class GameLifecycle : MonoBehaviour
     
     private void Start()
     {
+        Time.timeScale = 1;
+        Game.SessionData.IsPaused = false;
+        
         Game.EventHub.Subscribe<PlayerDeathEvent>(PlayerDeath);
         Game.EventHub.Subscribe<GameTimerStartEvent>(StartTimer);
         Game.EventHub.Subscribe<PauseEvent>(Pause);
