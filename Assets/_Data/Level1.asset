@@ -15,26 +15,71 @@ MonoBehaviour:
   spawns:
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
-    spawnPosition: {x: -1, y: 1.4}
+    spawnPosition: {x: -1.5, y: 1.5}
     spawnTime: 3
-    despawnTime: -1
+    despawnTime: 15
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
-    spawnPosition: {x: 2, y: 5}
-    spawnTime: 10
-    despawnTime: 17
+    spawnPosition: {x: 2, y: 3}
+    spawnTime: 4
+    despawnTime: 15
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
-    spawnPosition: {x: 1.2, y: -3}
-    spawnTime: 7
-    despawnTime: 13
+    spawnPosition: {x: -2, y: -3}
+    spawnTime: 5
+    despawnTime: 15
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 2, y: 2}
-    spawnTime: 2
-    despawnTime: 20
+    spawnTime: 6
+    despawnTime: 15
   - spawnable:
       spawnablePrefab: {fileID: 3671653508034221530, guid: 52b59793709564fea8464b92e0ad8a84, type: 3}
+    spawnPosition: {x: 0, y: 3}
+    spawnTime: 25
+    despawnTime: 40
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 0, y: -2.5}
+    spawnTime: 15
+    despawnTime: 25
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 0, y: -2.5}
+    spawnTime: 16
+    despawnTime: 25
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 0, y: -2.5}
+    spawnTime: 17
+    despawnTime: 25
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 0, y: -2.5}
+    spawnTime: 18
+    despawnTime: 25
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 2.5, y: -2.5}
+    spawnTime: 35
+    despawnTime: 45
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 0, y: 0}
-    spawnTime: 6
-    despawnTime: 0
+    spawnTime: 36
+    despawnTime: 45
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: -2.5, y: -2.5}
+    spawnTime: 37
+    despawnTime: 45
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 2.5, y: 2.5}
+    spawnTime: 38
+    despawnTime: 45
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: -2.5, y: 2.5}
+    spawnTime: 39
+    despawnTime: 45
