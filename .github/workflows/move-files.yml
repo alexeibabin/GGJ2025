@@ -16,7 +16,7 @@ jobs:
       - name: Checkout gh-pages branch
         uses: actions/checkout@v4
         with:
-          ref: deploy/BuildBranch
+          ref: gh-pages
 
       # Debug step: List all files to understand the structure
       - name: List all files before move
@@ -35,5 +35,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Move Build folder and index.html to root"
-          branch: deploy/BuildBranch
+          branch: gh-pages
           
