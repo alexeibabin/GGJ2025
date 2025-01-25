@@ -27,13 +27,18 @@ public class SceneLoader : MonoBehaviour
             about.onClick.AddListener(LoadAbout);
 
         Game.EventHub.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
-        Game.EventHub.Subscribe<EndGameStartedEvent>(evt => LoadMainMenu());
+        Game.EventHub.Subscribe<FadeFinishedEvent>(evt => LoadEndGame());
 
         // Ensure the pause menu is initially inactive
         if (pauseMenuPrefab != null)
         {
             pauseMenuPrefab.SetActive(false);
         }
+    }
+
+    private void LoadEndGame()
+    {
+        SceneManager.LoadScene(ProjectConstants.END_GAME_SCENE_NAME);
     }
 
     private void OnPauseMenuClosed(PauseMenuClosedEvent evt)
