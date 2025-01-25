@@ -1,6 +1,5 @@
 using System;
 using _Scripts.Utils;
-using DG.Tweening;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,17 +9,16 @@ namespace _Scripts.Spawner
     public class SpawnableWrapper
     {
         [SerializeField] private GameObject spawnablePrefab;
-        
+
         private GameObject _instance;
-        private const float FADE_IN_DURATION = 0.25f;
-        private const float FADE_OUT_DURATION = 0.25f;
 
         public void Spawn(Vector3 position = default)
         {
             if (spawnablePrefab != null)
             {
                 _instance = Object.Instantiate(spawnablePrefab, position, Quaternion.identity);
-                FadeIn(_instance);
+                var spawnable = _instance.GetComponent<ISpawnable>();
+                spawnable.Spawn();
                 Game.EventHub.Notify(new SpawnInEvent(_instance));
             }
             else
@@ -37,14 +35,15 @@ namespace _Scripts.Spawner
             }
         }
 
-        public void AnimateAndDestroy(GameObject spawnable)
+        public void AnimateAndDestroy(GameObject spawnableObject)
         {
+            var spawnable = spawnableObject.GetComponent<ISpawnable>();
             if (spawnable != null)
             {
-                FadeOut(spawnable, () =>
+                spawnable.Despawn(() =>
                 {
-                    Game.EventHub.Notify(new SpawnOutEvent(spawnable));
-                    Object.Destroy(spawnable);
+                    Game.EventHub.Notify(new SpawnOutEvent(spawnableObject));
+                    Object.Destroy(spawnableObject);
                 });
             }
             else
@@ -53,60 +52,25 @@ namespace _Scripts.Spawner
             }
         }
 
-        private void FadeIn(GameObject spawnable)
+
+        public struct SpawnInEvent : IEvent
         {
-            SpriteRenderer renderer = null;
-            
-            if (spawnable.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+            public GameObject gameObject;
+
+            public SpawnInEvent(GameObject instance)
             {
-                renderer = spriteRenderer;
+                gameObject = instance;
             }
-            else if (spawnable.TryGetComponentInChildren<SpriteRenderer>(out var childSpriteRenderer))
-            {
-                renderer = childSpriteRenderer;
-            }
-            else
-            {
-                JamLogger.LogWarning("Cannot fade in a game object without a sprite renderer!");
-                return;
-            }
-            
-            var color = renderer.color;
-            color.a = 0;
-            renderer.color = color;
-            renderer.DOFade(1f, FADE_IN_DURATION);
         }
 
-        private void FadeOut(GameObject spawnable, Action onComplete)
+        public struct SpawnOutEvent : IEvent
         {
-            if (spawnable.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+            public GameObject gameObject;
+
+            public SpawnOutEvent(GameObject instance)
             {
-                spriteRenderer.DOFade(0f, FADE_OUT_DURATION).OnComplete(() => onComplete?.Invoke());
+                gameObject = instance;
             }
-            else
-            {
-                onComplete?.Invoke();
-            }
-        }
-    }
-    
-    public struct SpawnInEvent : IEvent
-    {
-        public GameObject gameObject;
-        
-        public SpawnInEvent(GameObject instance)
-        {
-            gameObject = instance;
-        }
-    }
-    
-    public struct SpawnOutEvent : IEvent
-    {
-        public GameObject gameObject;
-        
-        public SpawnOutEvent(GameObject instance)
-        {
-            gameObject = instance;
         }
     }
 }
