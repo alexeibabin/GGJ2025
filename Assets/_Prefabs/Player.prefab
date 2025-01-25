@@ -100,6 +100,10 @@ MonoBehaviour:
   maxBounciness: 1
   aimPointer: {fileID: 7690911788901419062}
   pointerDistance: 0.5
+  cooldown: 1
+  shotCooldown: 0.2
+  autoGrow: 0
+  timeToGrow: 10
 --- !u!50 &8926399189460360415
 Rigidbody2D:
   serializedVersion: 5
