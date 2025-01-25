@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Android;
 using UnityEngine.UI;
 
 public struct PauseMenuClosedEvent : IEvent
