@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8935073111872045625}
   - component: {fileID: 1661209636873064835}
   m_Layer: 0
-  m_Name: HazardSpawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 90d7539c04285477d935560ad1529587, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafca7306afdd4cf58ec51b0edd8b6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabToSpawn: {fileID: 8573652977458360293, guid: bddfad5ea26c14be7a97d60a5a194e28, type: 3}
+  _prefabToSpawn: {fileID: 6525868348253434394, guid: 0494b33e5bb5d4f27bb4db0b94c577b3, type: 3}
