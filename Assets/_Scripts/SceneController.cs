@@ -23,7 +23,7 @@ public class SceneLoader : MonoBehaviour
         if (quitGame != null)
             quitGame.onClick.AddListener(QuitGame);
         
-        if (about != null)
+        if (about != null)  
             about.onClick.AddListener(LoadAbout);
 
         Game.EventHub.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
@@ -109,7 +109,7 @@ public class SceneLoader : MonoBehaviour
         {
             pauseMenuPrefab.SetActive(true); // Activate the pause menu
             isPaused = true;
-            Time.timeScale = 0f; // Pause the game
+            Game.EventHub.Notify(new PauseEvent());// Pause the game
         }
         else
         {
@@ -124,7 +124,7 @@ public class SceneLoader : MonoBehaviour
         {
             pauseMenuPrefab.SetActive(false); // Deactivate the pause menu
             isPaused = false;
-            Time.timeScale = 1f; // Resume the game
+            Game.EventHub.Notify(new PauseEvent());// Pause the game
         }
     }
 }
