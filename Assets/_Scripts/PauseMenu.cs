@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        isPaused = false;
         restartButton.onClick.AddListener(OnRestartClicked);
         backButton.onClick.AddListener(OnBackButtonClicked);
         mainMenuButton.onClick.AddListener(OnReturnToMainMenuClicked);
