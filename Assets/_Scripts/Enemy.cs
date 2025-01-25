@@ -1,6 +1,7 @@
+using _Scripts;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy
 {
     
     private Rigidbody2D rb;
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject Art;
     [SerializeField] private GameObject Explode;
-    public float damage = 1; 
+    public float Damage => 1; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

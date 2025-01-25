@@ -3,13 +3,15 @@ using DG.Tweening;
 
 namespace _Scripts.Behaviourals
 {
-    public class Mine : MonoBehaviour
+    public class Mine : MonoBehaviour, IEnemy
     {
         private Sequence _spinSequence;
         [SerializeField] private float minInterval = 2f;
         [SerializeField] private float maxInterval = 10f;
         [SerializeField] private float pushForce = 0.1f;
         [SerializeField] private float maxDistanceFromCenter = 5f; 
+        
+        public float Damage => 1f;
 
         private void Start()
         {

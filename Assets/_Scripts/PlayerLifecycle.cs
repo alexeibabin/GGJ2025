@@ -1,4 +1,5 @@
 using System;
+using _Scripts;
 using UnityEngine;
 
 public struct PlayerDeathEvent : IEvent
@@ -42,10 +43,10 @@ public class PlayerLifecycle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag(ProjectConstants.ENEMY_TAG))
         {
-            var enemyScript = other.gameObject.GetComponent<Enemy>();
-            Game.SessionData.BubbleHealth.value -= enemyScript.damage;
+            var enemyScript = other.gameObject.GetComponent<IEnemy>();
+            Game.SessionData.BubbleHealth.value -= enemyScript.Damage;
         }
     }
 }
