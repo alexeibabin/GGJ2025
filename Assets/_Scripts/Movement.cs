@@ -1,8 +1,4 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BubbleMovement : MonoBehaviour
@@ -73,6 +69,7 @@ public class BubbleMovement : MonoBehaviour
     private void Awake()
     {
         Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
+        Game.EventHub.Subscribe<PauseEvent>(evt => isActive = Game.SessionData.IsPaused);
         Game.EventHub.Subscribe<PlayerDeathEvent>(OnPlayerDeath);
     }
 
