@@ -332,8 +332,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enough to save the forest.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
-  m_sharedMaterial: {fileID: 5272841677866857528, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -738,8 +738,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You managed to collect 20 seeds.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
-  m_sharedMaterial: {fileID: 5272841677866857528, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -875,13 +875,13 @@ MonoBehaviour:
   m_text: Back to main menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 5272841677866857528, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -962,6 +962,10 @@ PrefabInstance:
     - target: {fileID: 692002155764816385, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 848931489145973595, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
       propertyPath: _fadeTime
