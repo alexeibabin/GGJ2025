@@ -36,6 +36,7 @@ public class GameLifecycle : MonoBehaviour
     
     private void Start()
     {
+        Game.EventHub.Subscribe<PlayerDeathEvent>(PlayerDeath);
         Game.EventHub.Subscribe<GameTimerStartEvent>(StartTimer);
         Game.EventHub.Subscribe<PauseEvent>(Pause);
         Game.EventHub.Subscribe<ResetEvent>(Reset);
@@ -54,11 +55,20 @@ public class GameLifecycle : MonoBehaviour
     {
         StartCoroutine(ResetDataDelayed());
         
+        Time.timeScale = 1;
+        Game.SessionData.IsPaused = false;
+
         if (lifecycleCoro != null)
         {
             StopCoroutine(lifecycleCoro);
             lifecycleCoro = null;
         }
+    }
+    
+    private void PlayerDeath(PlayerDeathEvent evt)
+    {
+        Game.SessionData.IsPaused = true;
+        Game.EventHub.Notify(new ResetEvent());
     }
     
     IEnumerator ResetDataDelayed()
@@ -70,6 +80,7 @@ public class GameLifecycle : MonoBehaviour
     private void Pause(PauseEvent evt)
     {
         Game.SessionData.IsPaused = !Game.SessionData.IsPaused;
+        Time.timeScale = Game.SessionData.IsPaused ? 0 : 1;
     }
 
     private void StartTimer(GameTimerStartEvent evt)
