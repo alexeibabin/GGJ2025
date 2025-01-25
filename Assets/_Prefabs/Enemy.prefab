@@ -70,8 +70,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.03489852, y: 0}
+  m_Radius: 0.33489853
 --- !u!50 &6405991009619748817
 Rigidbody2D:
   serializedVersion: 5
@@ -120,7 +120,9 @@ MonoBehaviour:
   maxXDirection: 1
   minYDirection: -1
   maxYDirection: 1
+  killable: 0
   Art: {fileID: 2852884333942545776}
+  Explode: {fileID: 0}
   damage: 1
 --- !u!114 &2644628793976441403
 MonoBehaviour:
