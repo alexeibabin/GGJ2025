@@ -9,23 +9,15 @@ public class YouLoseCanvasController : MonoBehaviour
     public float timeToLoseScreen = 0.5f;
     private bool isShowingLoseScreen = false;
 
-    private void OnDisable()
+    private void Awake()
     {
-        Game.SessionData.BubbleHealth.onValueChanged -= BubbleHealthOnonValueChanged;
+        Game.EventHub.Subscribe<PlayerDeathEvent>(OnPlayerDeath);
     }
 
-    private void OnEnable()
+    private void OnPlayerDeath(PlayerDeathEvent evt)
     {
-        Game.SessionData.BubbleHealth.onValueChanged += BubbleHealthOnonValueChanged;
-    }
-
-    private void BubbleHealthOnonValueChanged(float obj)
-    {
-        if (Game.SessionData.BubbleHealth.value <= 0 && !isShowingLoseScreen)
-        {
-            isShowingLoseScreen = true;
-            StartCoroutine(ShowLoseScreenAfterDelay());
-        }
+        isShowingLoseScreen = true;
+        StartCoroutine(ShowLoseScreenAfterDelay());
     }
 
     private IEnumerator ShowLoseScreenAfterDelay()
@@ -36,7 +28,9 @@ public class YouLoseCanvasController : MonoBehaviour
 
     public void Retry()
     {
-        SceneLoader.MainGame();
+        isShowingLoseScreen = false;
+        Game.EventHub.Notify(new ResetEvent());
+        screen.SetActive(false);
     }
 
     public void MainMenu()
