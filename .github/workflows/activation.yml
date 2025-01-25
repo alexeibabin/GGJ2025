@@ -65,14 +65,6 @@ jobs:
           restore-keys: |
             Library-
         continue-on-error: true
-            
-      - name: Free Disk Space for Android
-        run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker images -q)
-          df -h
 
       - name: Build project
         uses: game-ci/unity-builder@v4
