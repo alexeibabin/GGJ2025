@@ -7,8 +7,9 @@ namespace _Scripts.Spawner
 {
     public class FadeSpawner : MonoBehaviour, ISpawnable
     {
-        private const float FADE_IN_DURATION = 0.25f;
-        private const float FADE_OUT_DURATION = 0.25f;
+        [SerializeField] private float _fadeInDuration = 0.25f;
+        [SerializeField] private float _fadeOutDuration = 1f;
+        [SerializeField] private float _finalScale = 3f;
         
         public void Spawn()
         {
@@ -31,19 +32,38 @@ namespace _Scripts.Spawner
             var color = renderer.color;
             color.a = 0;
             renderer.color = color;
-            renderer.DOFade(1f, FADE_IN_DURATION);
+            renderer.DOFade(1f, _fadeInDuration);
         }
 
         public void Despawn(Action onComplete)
         {
-            if (TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            var childRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+            if (gameObject.TryGetComponent(out Collider2D collider2D))
             {
-                spriteRenderer.DOFade(0f, FADE_OUT_DURATION).OnComplete(() => onComplete?.Invoke());
+                collider2D.enabled = false;
             }
-            else
+
+            var sequence = DOTween.Sequence();
+            
+            if (spriteRenderer != null)
             {
-                onComplete?.Invoke();
+                sequence.Join(spriteRenderer.DOFade(0f, _fadeOutDuration));
             }
+
+            if (childRenderers != null)
+            {
+                foreach (var childRenderer in childRenderers)
+                {
+                    sequence.Join(childRenderer.DOFade(0f, _fadeOutDuration));
+                }
+            }
+            
+            sequence
+                .Join(transform.DOScale(_finalScale, _fadeOutDuration))
+                .SetEase(Ease.InExpo)
+                .OnComplete(() => onComplete?.Invoke());
         }
     }
 }
