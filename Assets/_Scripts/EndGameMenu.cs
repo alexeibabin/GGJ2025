@@ -15,9 +15,7 @@ public class EndGameMenu : MonoBehaviour
 
     private void Awake()
     {
-        mainMenuButton.onClick.AddListener(GoToMainMenu);
         int coinsCount = Game.SessionData.GetCollectableCount(ECollectableType.Coin);
-        
         PlayConversionScreen(coinsCount);
     }
 
@@ -42,7 +40,13 @@ public class EndGameMenu : MonoBehaviour
             .AppendInterval(fillTime)
             .Append(coinsText.DOFade(1, fillTime))
             .AppendInterval(fillTime)
-            .Append(messageText.DOFade(1, fillTime));
+            .Append(messageText.DOFade(1, fillTime))
+            .AppendInterval(fillTime)
+            .OnComplete(() =>
+            {
+                mainMenuButton.gameObject.SetActive(true);
+                mainMenuButton.onClick.AddListener(GoToMainMenu);
+            });
     }
 
     private void GoToMainMenu()
