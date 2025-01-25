@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
 using _Scripts.Collectables;
 using _Scripts.Utils;
 using Sirenix.OdinInspector;
