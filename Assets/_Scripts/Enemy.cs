@@ -18,8 +18,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxXDirection = 1;
     [SerializeField] private float minYDirection = -1;
     [SerializeField] private float maxYDirection = 1;
+    
+    [SerializeField] private bool killable = false;
 
     [SerializeField] private GameObject Art;
+    [SerializeField] private GameObject Explode;
     public float damage = 1; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -64,6 +67,15 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
+
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            if (Explode != null)
+            {
+                Instantiate(Explode, transform.position, Quaternion.identity);
+            }
+        }
+        
         // Get the collision normal
         Vector2 normal = collision.contacts[0].normal;
         
