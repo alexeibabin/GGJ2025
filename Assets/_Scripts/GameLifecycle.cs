@@ -67,8 +67,6 @@ public class GameLifecycle : MonoBehaviour
     
     private void PlayerDeath(PlayerDeathEvent evt)
     {
-        Game.SessionData.IsPaused = true;
-        Game.EventHub.Notify(new ResetEvent());
     }
     
     IEnumerator ResetDataDelayed()

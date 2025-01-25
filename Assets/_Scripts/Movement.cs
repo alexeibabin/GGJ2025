@@ -177,6 +177,8 @@ public class BubbleMovement : MonoBehaviour
 
     private void HandleProjectiles()
     {
+        if (!isActive) return;
+        
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
 
