@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6b1923b06e4858b1620049008bdcfd, type: 3}
+  m_Name: Level2old
+  m_EditorClassIdentifier: 
+  spawns:
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: -1, y: 1.3}
+    spawnTime: 5
+    despawnTime: 10
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 2, y: 5}
+    spawnTime: 8
+    despawnTime: 12
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 1.5, y: -6}
+    spawnTime: 11
+    despawnTime: 15
+  - spawnable:
+      spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
+    spawnPosition: {x: 2, y: 8}
+    spawnTime: 18
+    despawnTime: 22

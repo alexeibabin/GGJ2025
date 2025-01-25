@@ -49,5 +49,5 @@ MonoBehaviour:
   spawnPosition: {x: 1, y: 1, z: 0}
   levelSpawnInventory:
   - {fileID: 11400000, guid: c2a53ba8b65d34c70bc809b7a60d50e5, type: 2}
-  - {fileID: 11400000, guid: 1acee234a1eaa4e59b603ec178cf9ff6, type: 2}
+  - {fileID: 11400000, guid: 09071e440373b46f6b445b2ae29cc974, type: 2}
   - {fileID: 11400000, guid: 287a7abfd0fe74f1fa1644920b9d1ae0, type: 2}
