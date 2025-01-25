@@ -108,12 +108,34 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: panel-004_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 25, y: 25, z: 25, w: 25}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170785c4000000000800000000000000
+      internalID: 1280864369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d48ae8f4c45204bc9bb212c6c121749a
     internalID: 0
     vertices: []
     indices: 
@@ -122,7 +144,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      panel-004_0: 386153478
+      panel-004_1: 1280864369
+      panel-004_10: 2034696692
+      panel-004_11: 481466737
+      panel-004_12: -2120270535
+      panel-004_2: 412414137
+      panel-004_3: -325924165
+      panel-004_4: 975778299
+      panel-004_5: -425364367
+      panel-004_6: 2137804195
+      panel-004_7: 77753534
+      panel-004_8: 62171018
+      panel-004_9: 1471955943
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

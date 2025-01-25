@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: panel-001_0
+      name: panel-001_1
       rect:
         serializedVersion: 2
         x: 0
@@ -118,15 +118,15 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 25, y: 25, z: 25, w: 25}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f5e8af286dca44584b73ba0f1858108e
-      internalID: 342652528
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -146,6 +146,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       panel-001_0: 342652528
+      panel-001_1: 0
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
