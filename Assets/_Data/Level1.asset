@@ -75,7 +75,7 @@ MonoBehaviour:
     despawnTime: 45
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
-    spawnPosition: {x: 2.5, y: 2.5}
+    spawnPosition: {x: 3, y: 3}
     spawnTime: 38
     despawnTime: 45
   - spawnable:
