@@ -1,4 +1,7 @@
 using System;
+using _Scripts;
+using _Scripts.Spawner;
+using _Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +27,7 @@ public class SceneLoader : MonoBehaviour
             about.onClick.AddListener(LoadAbout);
 
         Game.EventHub.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
+        Game.EventHub.Subscribe<SpawnerConcludedEvent>(evt => LoadMainMenu());
 
         // Ensure the pause menu is initially inactive
         if (pauseMenuPrefab != null)
@@ -60,20 +64,19 @@ public class SceneLoader : MonoBehaviour
 
     public static void MainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
-
+        SceneManager.LoadScene(ProjectConstants.MAIN_MENU_SCENE_NAME);
     }
 
     public static void MainGame()
     {
-        SceneManager.LoadScene("MainGameScene");
-        Debug.Log("Loading Main Game right now?");
+        SceneManager.LoadScene(ProjectConstants.MAIN_GAME_SCENE_NAME);
+        JamLogger.LogInfo("Loading Main Game right now?");
     }
 
     //im sorry for this name
     public static void QuitGameStatic()
     {
-        Debug.Log("Returning to Main Menu...");
+        JamLogger.LogInfo("Returning to Main Menu...");
         MainMenu(); // Calls the LoadMainMenu method
     }
     // Load the Main Menu Scene
@@ -105,7 +108,7 @@ public class SceneLoader : MonoBehaviour
         }
         else
         {
-            Debug.LogError("PauseMenuPrefab is not assigned!");
+            JamLogger.LogError("PauseMenuPrefab is not assigned!");
         }
     }
 

@@ -4,5 +4,7 @@ namespace _Scripts
     {
         public const string LEVEL_ANIM_KEY = "level";
         public const string PLAYER_TAG = "Player";
+        public const string MAIN_MENU_SCENE_NAME = "MainMenuScene";
+        public const string MAIN_GAME_SCENE_NAME = "MainGameScene";
     }
 }
