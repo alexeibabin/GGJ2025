@@ -36,6 +36,20 @@ public class BubbleMovement : MonoBehaviour
     [SerializeField] private Transform aimPointer;
     [SerializeField] private float pointerDistance = 0.5f;
     
+    
+    [Header("Alternative Movement")]
+    [SerializeField] private float maxSpeed = 2f;
+    [SerializeField] private bool relativeDecrease = false;
+    [SerializeField] private float maxDecreasePercent = 0.25f;
+    [SerializeField] private bool cooldown = false;
+    [SerializeField] private float shotCooldown = 0.5f;
+    private float shotCooldownTimer = 0f;
+    
+    [SerializeField] private bool autoGrow = false;
+    [SerializeField] private float timeToGrow = 0.5f;
+    
+    
+    
     private Rigidbody2D rb;
     private float currentScale = 1f;
     private float chargeStartTime;
@@ -105,6 +119,11 @@ public class BubbleMovement : MonoBehaviour
         
         HandleBubbleSize();
         HandleProjectiles();
+
+        if (rb.linearVelocity.magnitude >= maxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+        }
     }
 
     public void ResetMovement()
@@ -138,6 +157,13 @@ public class BubbleMovement : MonoBehaviour
             rb.AddForce(rb.linearVelocity.normalized * stopForce );
         }
 
+        if (autoGrow)
+        {
+            float growthPerSecond = totalScaleRange / timeToGrow;
+            currentScale = Mathf.Min(currentScale + (growthPerSecond * Time.deltaTime), maxBubbleScale);
+            AdjustBounciness();
+        }
+
         // Apply scale directly
         transform.localScale = Vector3.one * currentScale;
 
@@ -155,7 +181,15 @@ public class BubbleMovement : MonoBehaviour
         Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
 
         HandleAimPointer(direction);
-
+        if (cooldown)
+        {
+            shotCooldownTimer += Time.deltaTime;
+            if (shotCooldownTimer < shotCooldown)
+            {
+                return;
+            }
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             chargeStartTime = Time.time;
@@ -164,6 +198,7 @@ public class BubbleMovement : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && currentScale > minBubbleScale)
         {
+            shotCooldownTimer = 0f;
             float chargeTime = Time.time - chargeStartTime;
             float chargeFactor = Mathf.Clamp01(chargeTime);
 
@@ -187,8 +222,16 @@ public class BubbleMovement : MonoBehaviour
             totalScaleRange = maxBubbleScale - minBubbleScale;
             sizeChangePerTap = totalScaleRange / tapsToMax;
             
-            // Decrease size by one tap's worth
-            currentScale = Mathf.Max(currentScale - sizeChangePerTap, minBubbleScale);
+            // Decrease size based on charge time if relativeDecrease is true
+            if (relativeDecrease)
+            {
+                float decreaseMultiplier = Mathf.Lerp(1f, maxDecreasePercent * tapsToMax, chargeFactor);
+                currentScale = Mathf.Max(currentScale - (sizeChangePerTap * decreaseMultiplier), minBubbleScale);
+            }
+            else
+            {
+                currentScale = Mathf.Max(currentScale - sizeChangePerTap, minBubbleScale);
+            }
             AdjustBounciness();
 
             isCharging = false;
