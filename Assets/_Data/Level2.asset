@@ -89,32 +89,32 @@ MonoBehaviour:
     spawnTime: 25
     despawnTime: 44
   - spawnable:
-      spawnablePrefab: {fileID: 4665417837418849403, guid: 5407923987bea47f9befa7b6853c8b0f, type: 3}
+      spawnablePrefab: {fileID: 2166846729888758647, guid: 3641c644faf774ed5a7ecfdc75b446ff, type: 3}
     spawnPosition: {x: 1, y: 3.7}
     spawnTime: 15
     despawnTime: 40
   - spawnable:
-      spawnablePrefab: {fileID: 4665417837418849403, guid: 5407923987bea47f9befa7b6853c8b0f, type: 3}
+      spawnablePrefab: {fileID: 2166846729888758647, guid: 3641c644faf774ed5a7ecfdc75b446ff, type: 3}
     spawnPosition: {x: 0, y: 4}
     spawnTime: 15
     despawnTime: 41
   - spawnable:
-      spawnablePrefab: {fileID: 4665417837418849403, guid: 5407923987bea47f9befa7b6853c8b0f, type: 3}
+      spawnablePrefab: {fileID: 2166846729888758647, guid: 3641c644faf774ed5a7ecfdc75b446ff, type: 3}
     spawnPosition: {x: -1, y: 3.7}
     spawnTime: 15
     despawnTime: 42
   - spawnable:
-      spawnablePrefab: {fileID: 4665417837418849403, guid: 5407923987bea47f9befa7b6853c8b0f, type: 3}
+      spawnablePrefab: {fileID: 2166846729888758647, guid: 3641c644faf774ed5a7ecfdc75b446ff, type: 3}
     spawnPosition: {x: 1, y: -3.7}
     spawnTime: 15
     despawnTime: 42
   - spawnable:
-      spawnablePrefab: {fileID: 4665417837418849403, guid: 5407923987bea47f9befa7b6853c8b0f, type: 3}
+      spawnablePrefab: {fileID: 2166846729888758647, guid: 3641c644faf774ed5a7ecfdc75b446ff, type: 3}
     spawnPosition: {x: 0, y: -4}
     spawnTime: 15
     despawnTime: 41
   - spawnable:
-      spawnablePrefab: {fileID: 4665417837418849403, guid: 5407923987bea47f9befa7b6853c8b0f, type: 3}
+      spawnablePrefab: {fileID: 2166846729888758647, guid: 3641c644faf774ed5a7ecfdc75b446ff, type: 3}
     spawnPosition: {x: -1, y: -3.7}
     spawnTime: 15
     despawnTime: 40
