@@ -184,8 +184,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3cdb8bdbf00d14bcba553f4fff7c2a66, type: 2}
-  m_sharedMaterial: {fileID: 186098918080186761, guid: 3cdb8bdbf00d14bcba553f4fff7c2a66, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
+  m_sharedMaterial: {fileID: 5272841677866857528, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -209,13 +209,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.8
+  m_fontSize: 39.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -320,8 +320,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hope's End
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3cdb8bdbf00d14bcba553f4fff7c2a66, type: 2}
-  m_sharedMaterial: {fileID: 186098918080186761, guid: 3cdb8bdbf00d14bcba553f4fff7c2a66, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
+  m_sharedMaterial: {fileID: 5272841677866857528, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -345,13 +345,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.3
+  m_fontSize: 31.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -456,8 +456,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Retry
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3cdb8bdbf00d14bcba553f4fff7c2a66, type: 2}
-  m_sharedMaterial: {fileID: 186098918080186761, guid: 3cdb8bdbf00d14bcba553f4fff7c2a66, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
+  m_sharedMaterial: {fileID: 5272841677866857528, guid: 2e59c4f2300e94d4e8ad52bcfc34377d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -481,13 +481,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.3
+  m_fontSize: 41.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
