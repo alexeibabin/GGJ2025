@@ -53,24 +53,40 @@ public class SceneLoader : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    // Load the Main Menu Scene
-    public void LoadMainMenu()
+    public static void MainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
+
     }
 
-    // Load the Main Game Scene
-    public void LoadMainGame()
+    public static void MainGame()
     {
         SceneManager.LoadScene("MainGameScene");
         Debug.Log("Loading Main Game right now?");
     }
 
+    //im sorry for this name
+    public static void QuitGameStatic()
+    {
+        Debug.Log("Returning to Main Menu...");
+        MainMenu(); // Calls the LoadMainMenu method
+    }
+    // Load the Main Menu Scene
+    public void LoadMainMenu()
+    {
+        MainMenu();
+    }
+
+    // Load the Main Game Scene
+    public void LoadMainGame()
+    {
+        MainGame();
+    }
+
     // Load the Main Menu instead of quitting the application
     public void QuitGame()
     {
-        Debug.Log("Returning to Main Menu...");
-        LoadMainMenu(); // Calls the LoadMainMenu method
+        QuitGameStatic();
     }
 
     // Activate the Pause Menu
