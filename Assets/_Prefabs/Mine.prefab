@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095b234de1dc43dca4b1fe22e1e3541d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeInDuration: 0.25
+  _fadeOutDuration: 1
+  _finalScale: 3
 --- !u!114 &5929196135721531455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +141,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &9197537859266077870
 GameObject:
   m_ObjectHideFlags: 0
