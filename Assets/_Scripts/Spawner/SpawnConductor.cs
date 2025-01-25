@@ -9,6 +9,10 @@ namespace _Scripts.Spawner
     public struct AttemptSpawnEvent : IEvent
     {
     }
+    
+    public struct SpawnerConcludedEvent : IEvent
+    {
+    }
 
     public class SpawnConductor : MonoBehaviour
     {
@@ -18,9 +22,12 @@ namespace _Scripts.Spawner
         
         [Space]
         [SerializeField] private List<LevelSpawnInventory> levelSpawnInventory;
+        
+        private bool _isSpawning;
 
         private void Start()
         {
+            Game.EventHub.Subscribe<GameTimerStartEvent>(evt => _isSpawning = true);
             Game.EventHub.Subscribe<AttemptSpawnEvent>(AttemptSpawnObstacles);
             Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
 
@@ -29,6 +36,8 @@ namespace _Scripts.Spawner
 
         private void AttemptSpawnObstacles(AttemptSpawnEvent evt)
         {
+            if (!_isSpawning) return;
+            
             var progressTimeAsInt = Mathf.FloorToInt(Game.SessionData.TimeSinceLastTransition);
             
             JamLogger.LogInfo($"Attempting to spawn for time: {progressTimeAsInt}");
@@ -36,6 +45,9 @@ namespace _Scripts.Spawner
             if (Game.SessionData.TransitionsCompleted >= levelSpawnInventory.Count)
             {
                 JamLogger.LogWarning("No more levels to spawn!");
+                Game.EventHub.Notify(new SpawnerConcludedEvent());
+                _isSpawning = false;
+                
                 return;
             }
 
@@ -70,6 +82,8 @@ namespace _Scripts.Spawner
             {
                 PlaceDefaultCollectible();
             }
+            
+            _isSpawning = false;
         }
     }
 }
