@@ -136,6 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095b234de1dc43dca4b1fe22e1e3541d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeInDuration: 0.25
+  _fadeOutDuration: 0.5
+  _finalScale: 3
 --- !u!1001 &1615903454063576878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,6 +190,14 @@ PrefabInstance:
     - target: {fileID: 3601662057044597342, guid: 518362267d5c0432a84a6417a406ed64, type: 3}
       propertyPath: m_Name
       value: EnemySpirirtMask
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919456255893858499, guid: 518362267d5c0432a84a6417a406ed64, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861610475837345131, guid: 518362267d5c0432a84a6417a406ed64, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
