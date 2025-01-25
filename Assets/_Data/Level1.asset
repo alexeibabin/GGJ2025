@@ -22,7 +22,7 @@ MonoBehaviour:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 2, y: 5}
     spawnTime: 10
-    despawnTime: 10
+    despawnTime: 17
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 1.2, y: -3}
