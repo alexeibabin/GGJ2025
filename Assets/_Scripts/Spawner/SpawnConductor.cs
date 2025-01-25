@@ -30,7 +30,7 @@ namespace _Scripts.Spawner
 
         private void AttemptSpawnObstacles(AttemptSpawnEvent evt)
         {
-            var progressTimeAsInt = Mathf.FloorToInt(Game.SessionData.ProgressTimer);
+            var progressTimeAsInt = Mathf.FloorToInt(Game.SessionData.TimeSinceLastTransition);
             
             JamLogger.LogInfo($"Attempting to spawn for time: {progressTimeAsInt}");
             
@@ -44,6 +44,7 @@ namespace _Scripts.Spawner
             {
                 if (spawnData.spawnTime == progressTimeAsInt)
                 {
+                    JamLogger.LogInfo("Spawning at time: " + progressTimeAsInt + " for level: " + Game.SessionData.TransitionsCompleted + " with position: " + spawnData.spawnPosition);
                     spawnData.spawnable.Spawn(spawnData.spawnPosition);
                 }
                 
@@ -52,8 +53,6 @@ namespace _Scripts.Spawner
                     spawnData.spawnable.Despawn();
                 }
             }
-
-            JamLogger.LogInfo(progressTimeAsInt.ToString(CultureInfo.InvariantCulture));
         }
 
         private void PlaceDefaultCollectible()

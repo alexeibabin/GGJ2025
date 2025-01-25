@@ -16,20 +16,20 @@ MonoBehaviour:
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: -1, y: 1.3}
-    spawnTime: 30
-    despawnTime: 55
+    spawnTime: 5
+    despawnTime: 10
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 2, y: 5}
-    spawnTime: 36
-    despawnTime: 55
+    spawnTime: 8
+    despawnTime: 12
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 1.5, y: -6}
-    spawnTime: 43
-    despawnTime: 55
+    spawnTime: 11
+    despawnTime: 15
   - spawnable:
       spawnablePrefab: {fileID: 5622109799530753115, guid: edc1f492a63504d76bbbb832cba060d2, type: 3}
     spawnPosition: {x: 2, y: 8}
-    spawnTime: 51
-    despawnTime: 55
+    spawnTime: 18
+    despawnTime: 22

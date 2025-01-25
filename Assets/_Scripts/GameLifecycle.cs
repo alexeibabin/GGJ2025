@@ -95,8 +95,8 @@ public class GameLifecycle : MonoBehaviour
                 Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.TransitionsCompleted));
             }
 
-            if (Mathf.RoundToInt(Game.SessionData.ProgressTimer) >
-                Mathf.RoundToInt(Game.SessionData.ProgressTimer - Time.deltaTime))
+            if (Mathf.RoundToInt(Game.SessionData.TimeSinceLastTransition) >
+                Mathf.RoundToInt(Game.SessionData.TimeSinceLastTransition - Time.deltaTime))
             {
                 Game.EventHub.Notify(new AttemptSpawnEvent());
             }
