@@ -586,9 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd1e660c38714757b20334b27dc3e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGame: {fileID: 1945011033685818487}
+  startGame: {fileID: 0}
   quitGame: {fileID: 0}
-  about: {fileID: 3876172965294211353}
+  about: {fileID: 0}
   pauseMenuPrefab: {fileID: 460961890304917746}
 --- !u!1 &3152335792885383825
 GameObject:

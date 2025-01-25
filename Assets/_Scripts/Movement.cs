@@ -42,6 +42,8 @@ public class BubbleMovement : MonoBehaviour
     private bool isCharging = false;
     private Camera mainCamera;
 
+    private bool isActive = true;
+
     // Calculate size change per tap
     private float totalScaleRange;
     private float sizeChangePerTap;
@@ -49,10 +51,17 @@ public class BubbleMovement : MonoBehaviour
     private void Awake()
     {
         Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
+        Game.EventHub.Subscribe<PlayerDeathEvent>(OnPlayerDeath);
+    }
+
+    private void OnPlayerDeath(PlayerDeathEvent evt)
+    {
+        isActive = false;
     }
 
     private void OnGameReset(ResetEvent evt)
     {
+        isActive = true;
         ResetMovement();    
     }
 
@@ -81,10 +90,11 @@ public class BubbleMovement : MonoBehaviour
             ResetMovement();
         }
 
-        if (Game.SessionData.BubbleHealth.value <= 0)
+        if (!isActive)
         {
             return;
         }
+        
         HandleBubbleSize();
         HandleProjectiles();
     }

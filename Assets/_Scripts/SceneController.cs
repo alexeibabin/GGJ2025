@@ -14,9 +14,14 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
-        startGame.onClick.AddListener(LoadMainGame);
-        quitGame.onClick.AddListener(QuitGame);
-        about.onClick.AddListener(LoadAbout);
+        if(startGame != null)
+            startGame.onClick.AddListener(LoadMainGame);
+        
+        if (quitGame != null)
+            quitGame.onClick.AddListener(QuitGame);
+        
+        if (about != null)
+            about.onClick.AddListener(LoadAbout);
 
         Game.EventHub.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
 

@@ -200,8 +200,8 @@ MonoBehaviour:
   minTimeToChange: 5
   maxTimeToChange: 10
   changeSpeed: 0
-  minSpeed: 2
-  maxSpeed: 4
+  minSpeed: 0.5
+  maxSpeed: 1
   minXDirection: -1
   maxXDirection: 1
   minYDirection: -1

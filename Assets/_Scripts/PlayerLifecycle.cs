@@ -1,10 +1,17 @@
 using System;
 using UnityEngine;
 
+public struct PlayerDeathEvent : IEvent
+{
+}
+
 public class PlayerLifecycle : MonoBehaviour
 {
     public BubbleMovement MovementScript;
-    public PlayerDeath DeathScript;
+    
+    [SerializeField] private GameObject livingArt;
+    [SerializeField] private GameObject deathArt;
+    
     private void Awake()
     {
         Game.EventHub.Subscribe<ResetEvent>(OnGameReset);
@@ -16,18 +23,20 @@ public class PlayerLifecycle : MonoBehaviour
         if(health > 0)
             return;
 
+        Game.EventHub.Notify(new PlayerDeathEvent());
         PlayDeathSequence();
     }
 
     private void PlayDeathSequence()
     {
-        MovementScript.enabled = false;
-        DeathScript.PlayDeathSequence();
+        livingArt.SetActive(false);
+        deathArt.SetActive(true);
     }
     
     private void OnGameReset(ResetEvent evt)
     {
-        MovementScript.enabled = true;
+        livingArt.SetActive(true);
+        deathArt.SetActive(false);
         MovementScript.ResetMovement();    
     }
 
