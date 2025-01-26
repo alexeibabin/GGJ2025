@@ -1,6 +1,5 @@
 using System;
 using _Scripts;
-using _Scripts.Spawner;
 using _Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +14,7 @@ public class SceneLoader : MonoBehaviour
 
     private bool isPaused = false;
 
-    private void Awake()
+    private void Start()
     {
         if(startGame != null)
             startGame.onClick.AddListener(LoadMainGame);
@@ -26,8 +25,8 @@ public class SceneLoader : MonoBehaviour
         if (about != null)  
             about.onClick.AddListener(LoadAbout);
 
-        Game.EventHub.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
-        Game.EventHub.Subscribe<FadeFinishedEvent>(evt => LoadEndGame());
+        Game.EventHub?.Subscribe<PauseMenuClosedEvent>(OnPauseMenuClosed);
+        Game.EventHub?.Subscribe<FadeFinishedEvent>(evt => LoadEndGame());
 
         // Ensure the pause menu is initially inactive
         if (pauseMenuPrefab != null)

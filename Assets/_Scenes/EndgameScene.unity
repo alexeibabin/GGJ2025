@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 164658640}
   - component: {fileID: 164658642}
   - component: {fileID: 164658641}
+  - component: {fileID: 164658643}
   m_Layer: 5
   m_Name: ConvertedForest
   m_TagString: Untagged
@@ -247,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Material: {fileID: 2100000, guid: 9bb6699f5cbcd46db93eb8681153920b, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -273,6 +274,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164658639}
   m_CullTransparentMesh: 1
+--- !u!114 &164658643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164658639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentShaderType: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!1 &182951680
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,10 +374,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 36
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 56
   m_fontStyle: 1
@@ -763,10 +780,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 36
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 56
   m_fontStyle: 1
@@ -979,6 +996,34 @@ PrefabInstance:
       propertyPath: _playFadeOutOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6803387418657372579}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFadeFinished
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _Scripts.EndGameMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495531879419326949, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: onFadeFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4259349764579819633, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
       propertyPath: m_Name
       value: ScreenFader
@@ -1067,7 +1112,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8794663776569410803, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794663776569410803, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794663776569410803, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 848931489145973595, guid: 0e8cf3f49fcfe4b7898576bd34a8fbc5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1191,10 +1249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

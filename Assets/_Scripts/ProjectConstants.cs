@@ -10,5 +10,6 @@ namespace _Scripts
         public const string MAIN_GAME_SCENE_NAME = "MainGameScene";
         public const string END_GAME_SCENE_NAME = "EndgameScene";
         public const string ENEMY_TAG = "Enemy";
+        public const string SAVED_COINS = "SavedCoinsPref";
     }
 }

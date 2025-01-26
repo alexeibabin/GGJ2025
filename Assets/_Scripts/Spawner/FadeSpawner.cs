@@ -37,6 +37,8 @@ namespace _Scripts.Spawner
 
         public void Despawn(Action onComplete)
         {
+            if (this == null) return;
+            
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             var childRenderers = GetComponentsInChildren<SpriteRenderer>();
 

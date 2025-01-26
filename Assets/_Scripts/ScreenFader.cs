@@ -1,6 +1,8 @@
+using _Scripts;
 using _Scripts.Spawner;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ScreenFader : MonoBehaviour
@@ -8,6 +10,8 @@ public class ScreenFader : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private float _fadeTime;
     [SerializeField] private bool _playFadeOutOnAwake;
+    
+    [SerializeField] private UnityEvent onFadeFinished = new UnityEvent();
     
     private void StartFade(EndGameStartedEvent endGameEvent)
     {
@@ -17,12 +21,12 @@ public class ScreenFader : MonoBehaviour
 
     private void FadeOut()
     {
-        _image.DOFade(0, _fadeTime).SetEase(Ease.InExpo);
+        _image.DOFade(0, _fadeTime).SetEase(Ease.InExpo).OnComplete(() => onFadeFinished?.Invoke());
     }
 
     private void OnFadeFinished()
     {
-        Game.EventHub.Notify(new FadeFinishedEvent());
+        Game.EventHub?.Notify(new FadeFinishedEvent());
     }
 
     private void Awake()
@@ -33,14 +37,14 @@ public class ScreenFader : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        Game.EventHub.Subscribe<EndGameStartedEvent>(StartFade);
+        Game.EventHub?.Subscribe<EndGameStartedEvent>(StartFade);
     }
 
     private void OnDisable()
     {
-        Game.EventHub.Subscribe<EndGameStartedEvent>(StartFade);
+        Game.EventHub?.Subscribe<EndGameStartedEvent>(StartFade);
     }
 }
 

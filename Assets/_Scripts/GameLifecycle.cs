@@ -1,4 +1,6 @@
 using System.Collections;
+using _Scripts;
+using _Scripts.Collectables;
 using _Scripts.Spawner;
 using _Scripts.Utils;
 using Sirenix.OdinInspector;
@@ -82,39 +84,51 @@ public class GameLifecycle : MonoBehaviour
     {
         Game.SessionData.IsPaused = !Game.SessionData.IsPaused;
         Time.timeScale = Game.SessionData.IsPaused ? 0 : 1;
+
+        if (!Game.SessionData.IsPaused && lifecycleCoro == null)
+        {
+            lifecycleCoro = StartCoroutine(TimerLoop());
+        }
+        else if (Game.SessionData.IsPaused && lifecycleCoro != null)
+        {
+            StopCoroutine(lifecycleCoro);
+            lifecycleCoro = null;
+        }
+    }
+
+    private IEnumerator TimerLoop()
+    {
+        while (true)
+        {
+            if (!Game.SessionData.IsPaused)
+            {
+                Game.SessionData.ProgressTimer += Time.deltaTime;
+                Game.SessionData.TimeSinceLastTransition += Time.deltaTime;
+
+                if (Game.SessionData.TimeSinceLastTransition >= timeBetweenTransitions)
+                {
+                    Game.SessionData.TransitionsCompleted++;
+                    Game.SessionData.TimeSinceLastTransition = 0;
+
+                    JamLogger.LogInfo($"Transition #{Game.SessionData.TransitionsCompleted} has started");
+                    Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.TransitionsCompleted));
+                }
+
+                if (Mathf.RoundToInt(Game.SessionData.TimeSinceLastTransition) >
+                    Mathf.RoundToInt(Game.SessionData.TimeSinceLastTransition - Time.deltaTime))
+                {
+                    Game.EventHub.Notify(new AttemptSpawnEvent());
+                }
+            }
+
+            yield return null;
+        }
     }
 
     private void StartTimer(GameTimerStartEvent evt)
     {
         JamLogger.LogInfo($"Game timer has started");
         lifecycleCoro = StartCoroutine(TimerLoop());
-    }
-
-    private IEnumerator TimerLoop()
-    {
-        while (!Game.SessionData.IsPaused)
-        {
-            Game.SessionData.ProgressTimer += Time.deltaTime;
-            Game.SessionData.TimeSinceLastTransition += Time.deltaTime;
-
-            if (Game.SessionData.TimeSinceLastTransition >= timeBetweenTransitions)
-            {
-                //  Move this to transition animation complete?
-                Game.SessionData.TransitionsCompleted++;
-                Game.SessionData.TimeSinceLastTransition = 0;
-                
-                JamLogger.LogInfo($"Transition #{Game.SessionData.TransitionsCompleted} has started");
-                Game.EventHub.Notify(new TransitionStartedEvent(Game.SessionData.TransitionsCompleted));
-            }
-
-            if (Mathf.RoundToInt(Game.SessionData.TimeSinceLastTransition) >
-                Mathf.RoundToInt(Game.SessionData.TimeSinceLastTransition - Time.deltaTime))
-            {
-                Game.EventHub.Notify(new AttemptSpawnEvent());
-            }
-
-            yield return null;
-        }
     }
     
     [ButtonGroup] 

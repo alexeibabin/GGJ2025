@@ -1,3 +1,4 @@
+using _Scripts;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]

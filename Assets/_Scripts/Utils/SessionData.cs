@@ -26,9 +26,9 @@ public class SessionData
         BubbleHealth.value = 1;
         ProgressTimer = 0;
         TimeSinceLastTransition = 0;
-        ClearCollectables();
         TransitionsCompleted = 0;
         CurrentLevel = 0;
+        ClearCollectables();
     }
     
     public void AddCollectable(ECollectableType collectableType)
@@ -41,9 +41,9 @@ public class SessionData
 
     public int GetCollectableCount(ECollectableType collectableType)
     {
-        if (CollectedItems.ContainsKey(collectableType))
+        if (CollectedItems.TryGetValue(collectableType, out var collectableCount))
         {
-            return CollectedItems[collectableType];
+            return collectableCount;
         }
         else
         {
@@ -51,39 +51,8 @@ public class SessionData
         }
     }
 
-    public void ClearCollectables()
+    private void ClearCollectables()
     {
         CollectedItems.Clear();
-    }
-
-    public void AddSpawnable(GameObject evtGameObject)
-    {
-        if (!Spawned.ContainsKey(CurrentLevel))
-        {
-            Spawned.Add(CurrentLevel, new List<GameObject>());
-        }
-        
-        Spawned[CurrentLevel].Add(evtGameObject);
-    }
-
-    public void RemoveSpawnable(GameObject evtGameObject)
-    {
-        if (Spawned.ContainsKey(CurrentLevel))
-        {
-            Spawned[CurrentLevel].Remove(evtGameObject);
-        }
-    }
-    
-    public void ClearSpawnables()
-    {
-        if (Spawned.ContainsKey(CurrentLevel))
-        {
-            foreach (var spawnable in Spawned[CurrentLevel])
-            {
-                Object.Destroy(spawnable);
-            }
-            
-            Spawned[CurrentLevel].Clear();
-        }
     }
 }

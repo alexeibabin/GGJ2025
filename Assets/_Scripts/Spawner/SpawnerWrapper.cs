@@ -19,7 +19,6 @@ namespace _Scripts.Spawner
                 _instance = Object.Instantiate(spawnablePrefab, position, Quaternion.identity);
                 var spawnable = _instance.GetComponent<ISpawnable>();
                 spawnable.Spawn();
-                Game.EventHub.Notify(new SpawnInEvent(_instance));
             }
             else
             {
@@ -40,36 +39,11 @@ namespace _Scripts.Spawner
             var spawnable = spawnableObject.GetComponent<ISpawnable>();
             if (spawnable != null)
             {
-                spawnable.Despawn(() =>
-                {
-                    Game.EventHub.Notify(new SpawnOutEvent(spawnableObject));
-                    Object.Destroy(spawnableObject);
-                });
+                spawnable.Despawn(() => { Object.Destroy(spawnableObject); });
             }
             else
             {
                 JamLogger.LogWarning("Cannot destroy a null instance!");
-            }
-        }
-
-
-        public struct SpawnInEvent : IEvent
-        {
-            public GameObject gameObject;
-
-            public SpawnInEvent(GameObject instance)
-            {
-                gameObject = instance;
-            }
-        }
-
-        public struct SpawnOutEvent : IEvent
-        {
-            public GameObject gameObject;
-
-            public SpawnOutEvent(GameObject instance)
-            {
-                gameObject = instance;
             }
         }
     }

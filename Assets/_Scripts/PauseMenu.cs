@@ -1,4 +1,6 @@
+using _Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public struct PauseMenuClosedEvent : IEvent
@@ -7,7 +9,7 @@ public struct PauseMenuClosedEvent : IEvent
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private Button restartButton;
+    [FormerlySerializedAs("restartButton")] [SerializeField] private Button retryButton;
     [SerializeField] private Button backButton;
     [SerializeField] private Button mainMenuButton;
 
@@ -16,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         isPaused = false;
-        restartButton.onClick.AddListener(OnRestartClicked);
+        retryButton.onClick.AddListener(OnRetryClicked);
         backButton.onClick.AddListener(OnBackButtonClicked);
         mainMenuButton.onClick.AddListener(OnReturnToMainMenuClicked);
     }
@@ -31,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         Game.EventHub.Notify(new PauseMenuClosedEvent());
     }
 
-    private void OnRestartClicked()
+    private void OnRetryClicked()
     {
         Game.EventHub.Notify(new PauseMenuClosedEvent());
         Game.EventHub.Notify(new ResetEvent());
